@@ -1,0 +1,58 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.pokemonCard{
+    width: 15vw;
+    height: 19vw;
+    @include flex(column, space-between);
+    background-color: $cardColor;
+    border-radius: 1vw;
+    overflow: hidden;
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+    font-size: 1vw;
+}
+
+.pokemonCard_header{
+    width: 100%;
+    height: 15%;
+    background-color: $cardHeaderColor;
+    @include flex(row, space-between);
+    color: $cardTextColor;
+}
+
+.pokemonCard_title{
+    gap: $cardHeaderGap;
+    padding: $cardHeaderPadding;
+    @include flex(row, center);
+}
+
+.pokemonCard_buttons{
+    gap: $cardHeaderGap;
+    padding: $cardHeaderPadding;
+    @include flex(row, center);
+
+    a{
+        @include flex(row, center);
+    }
+}
+
+.pokemonCard_main{
+    width: 100%;
+    height: 85%;
+    @include flex(column, space-between);
+
+    img{
+        width: 75%;
+    }
+
+    .pokemonCard_attack{
+        width: 100%;
+        height: 20%;
+        background-color: $cardAttackColor;
+        color: $cardTextColor;
+        font-weight: 500;
+        @include flex(row, space-around);
+    }
+}
