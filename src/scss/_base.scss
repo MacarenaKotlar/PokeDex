@@ -18,10 +18,17 @@ header{
 }
 
 main{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    row-gap: 5vw;
-    padding: 2vw;
+    height: 100vh;
+    @include flex(row, space-between);
+    align-items: start;
+    
+    .cardsContainer{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 4vw;
+        row-gap: 4vw;
+        padding: 2vw;
+    }
 }
 
 ul{
