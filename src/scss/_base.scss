@@ -18,9 +18,8 @@ header{
 }
 
 main{
-    height: 100vh;
+    height: 100%;
     @include flex(row, space-between);
-    align-items: start;
     
     .cardsContainer{
         display: grid;
@@ -28,6 +27,7 @@ main{
         column-gap: 4vw;
         row-gap: 4vw;
         padding: 2vw;
+        align-self: flex-start;
     }
 }
 
@@ -37,4 +37,13 @@ ul{
 
 a{
     text-decoration: none;
+}
+
+footer{
+    background-color: $primaryColor;
+    padding: 1vw;
+    font-size: 1vw;
+    font-weight: 500;
+    text-align: center;
+    color: $primaryTextColor;
 }
