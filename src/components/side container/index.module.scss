@@ -4,7 +4,8 @@
 .sideContainer{
     width: 20%;
     height: 100%;
-    background-color: $primaryColor;
+    background-color: rgb(45, 45, 45);
+    border-right: 1px solid #ffd700;
     @include flex(row, center);
 
     ul{
@@ -16,25 +17,8 @@
             width: 80%;
             text-align: center;
             font-size: 1.1vw;
-            color: $primaryTextColor;
+            color: $primaryColor;
             font-weight: 500;
-
-            div{
-                height: 2vw;
-                
-                div{
-                    span{
-                        font-size: 0.8vw;
-                    }
-                }
-
-                span{
-                    span{
-                        width: 1vw;
-                        height: 1vw;
-                    }
-                }
-            }
         }
     }
 }
