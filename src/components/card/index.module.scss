@@ -29,12 +29,21 @@
 }
 
 .pokemonCard_buttons{
-    gap: $cardHeaderGap;
     padding: $cardHeaderPadding;
     @include flex(row, center);
 
     a{
+        width: 2vw;
+        height: 2vw;
         @include flex(row, center);
+        &:hover{
+            border-radius: 50%;
+            background-color: rgba(147, 147, 147, 0.3);
+        }
+    }
+
+    .favorite{
+        color: gold;
     }
 }
 

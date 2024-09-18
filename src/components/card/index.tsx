@@ -12,6 +12,12 @@ interface ICard{
 
 export function Card({ id, name, image, attackPoints }: ICard){
     const [favorite, setFavorite] = useState(false);
+
+    const star = favorite ? <StarFilled /> : <StarOutlined />
+    
+    const handleClick = () => {
+        setFavorite(!favorite);
+    }
     
     return(
         <div className={styles.pokemonCard}>
@@ -21,7 +27,7 @@ export function Card({ id, name, image, attackPoints }: ICard){
                     <h3>{name}</h3>
                 </div>
                 <div className={styles.pokemonCard_buttons}>
-                    <a className={favorite ? `${styles.pokemonCard_buttons_favoriteBtn} ${styles.favorite}` : styles.pokemonCard_buttons_favoriteBtn}><StarOutlined /></a>
+                    <a className={favorite ? `${styles.pokemonCard_buttons_favoriteBtn} ${styles.favorite}` : styles.pokemonCard_buttons_favoriteBtn} onClick={handleClick}>{star}</a>
                     <a className="pokemonCard-buttons-editBtn"><EditOutlined /></a>
                 </div>
             </div>
