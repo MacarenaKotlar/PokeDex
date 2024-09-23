@@ -11,12 +11,10 @@ function App() {
       <header>
           <NavBar/>
       </header>
-      <main>
-        <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/details' element={<Details />} />
-        </Routes>
-      </main>
+      <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/details' element={<Details />} />
+      </Routes>
       <footer>
         Desarrollado por Macarena Kotlar
       </footer>
