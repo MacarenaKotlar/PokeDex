@@ -4,6 +4,7 @@ import './scss/_base.scss';
 import { NavBar } from './components/navbar';
 import Home from './screens/home';
 import Details from './screens/details';
+import Edit from './screens/edit';
 
 function App() {
   return(
@@ -14,6 +15,7 @@ function App() {
       <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/details' element={<Details />} />
+          <Route path='/edit' element={<Edit />} />
       </Routes>
       <footer>
         Desarrollado por Macarena Kotlar
