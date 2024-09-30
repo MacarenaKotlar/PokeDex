@@ -2,17 +2,42 @@ import type { SelectProps } from 'antd';
 import { Select, Tag } from 'antd';
 import { ConfigProvider } from 'antd';
 import styles from './index.module.scss';
+import ColorTags from '../type tags/tags';
 
 export function SideContainer(){
 
     type TagRender = SelectProps['tagRender'];
 
     const options: SelectProps['options'] = [
-    { value: '#93d373', label: 'Planta' },
-    { value: '#b9c64d', label: 'Bicho' },
-    { value: '#86a6f3', label: 'Agua' },
-    { value: '#f39959', label: 'Fuego' },
-    ];
+        {
+          label: 'Planta',
+          value: 'Grass',
+        },
+        {
+          label: 'Veneno',
+          value: 'Poison',
+        },
+        {
+          label: 'Fuego',
+          value: 'Fire',
+        },
+        {
+          label: 'Volador',
+          value: 'Flying',
+        },
+        {
+          label: 'Agua',
+          value: 'Water',
+        },
+        {
+          label: 'Eléctrico',
+          value: 'Electric',
+        },
+        {
+          label: 'Psíquico',
+          value: 'Psychic',
+        },
+      ];
 
     const tagRender: TagRender = (props) => {
     const { label, value, closable, onClose } = props;
@@ -22,7 +47,7 @@ export function SideContainer(){
     };
     return (
         <Tag
-        color={value}
+        color={ColorTags(value)}
         onMouseDown={onPreventMouseDown}
         closable={closable}
         onClose={onClose}
@@ -81,6 +106,7 @@ export function SideContainer(){
                             tagRender={tagRender}
                             style={{ width: '100%' }}
                             options={options}
+                            placeholder='Seleccione los Tipos'
                         />
                     </li>
 
