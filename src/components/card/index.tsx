@@ -16,7 +16,9 @@ export function Card({ id, name, image, attackPoints }: ICard){
 
     const star = favorite ? <StarFilled /> : <StarOutlined />
     
-    const handleClick = () => {
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        event.preventDefault();
+        event.stopPropagation();
         setFavorite(!favorite);
     }
     
