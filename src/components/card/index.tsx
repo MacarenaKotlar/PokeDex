@@ -32,7 +32,7 @@ export function Card({ id, name, image, attackPoints }: ICard){
                     </div>
                     <div className={styles.pokemonCard_buttons}>
                         <a className={favorite ? `${styles.pokemonCard_buttons_favoriteBtn} ${styles.favorite}` : styles.pokemonCard_buttons_favoriteBtn} onClick={handleClick}>{star}</a>
-                        <a className="pokemonCard-buttons-editBtn"><EditOutlined /></a>
+                        <Link to={`/edit/${id}`} className="pokemonCard-buttons-editBtn"><EditOutlined /></Link>
                     </div>
                 </div>
                 <div className={styles.pokemonCard_main}>
