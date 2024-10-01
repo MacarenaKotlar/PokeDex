@@ -15,23 +15,17 @@
     display: grid;
     grid-template-rows: 25vw 15vw;
     grid-template-columns: 25vw 1fr;
-    gap: 0.2vw;
     border-radius: 1vw;
     overflow: hidden;
 }
 
 .pokemonDetails{
-    gap: 0.2vw;
     display: flex;
     flex-direction: column;
 }
 
-.pokemonImage, .pokemonDetails_details{
-    background-color: $cardColor;
-
-}
-
 .pokemonImage{
+    background-color: #D9D9D9;
     @include flex(row, center);
     background-position: center;
     background-repeat: no-repeat;
@@ -54,10 +48,11 @@
     gap: 1.5vw;
     padding: 0 3vw;
     @include flex(row, flex-start);
-
+    
     a{
         width: 2.3vw;
         height: 2.3vw;
+        color: white;
         @include flex(row, center);
 
         &:hover{
@@ -78,6 +73,7 @@
 }
 
 .pokemonDetails_details{
+    background-color: $cardColor;
     width: 100%;
     height: 80%;
     display: grid;
