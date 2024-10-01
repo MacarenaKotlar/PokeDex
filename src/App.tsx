@@ -5,6 +5,7 @@ import { NavBar } from './components/navbar';
 import Home from './screens/home';
 import Details from './screens/details';
 import Edit from './screens/edit';
+import Creation from './screens/creation';
 
 function App() {
   return(
@@ -14,8 +15,9 @@ function App() {
       </header>
       <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/details' element={<Details />} />
-          <Route path='/edit' element={<Edit />} />
+          <Route path='/detail/:id' element={<Details />} />
+          <Route path='/edit/:id' element={<Edit />} />
+          <Route path='/creation' element={<Creation />} />
       </Routes>
       <footer>
         Desarrollado por Macarena Kotlar
