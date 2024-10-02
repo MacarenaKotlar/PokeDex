@@ -71,6 +71,8 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
         Swal.fire({
           title: successText,
           icon: "success",
+        }).then(() => {
+          window.location.href = "/";
         });
       }
     });
