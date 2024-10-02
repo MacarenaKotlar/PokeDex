@@ -5,7 +5,7 @@ interface IEvolution{
 
 export interface IPokemon{
     id: number;
-    name: string,
+    name: string;
     types: string[];
     height: number;
     weigth: number;
