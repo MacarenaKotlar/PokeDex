@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import { Card } from "../../components/card";
 import { SideContainer } from "../../components/side container";
 import { IPokemon, listaPokemones } from "../../mock";
+import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
+import { GlobalStateService } from "../../services/globalStateService";
 
 function Home() {
-  const [pokemones, setPokemones] = useState<IPokemon[]>([]);
   useEffect(() => {
     getPokemones();
   }, []);
 
-  const getPokemones = () => {
-    const fetchList = [...listaPokemones, ...listaPokemones];
-    setPokemones(fetchList);
+  const pokemones = GlobalStateService.getPokemons();
+
+  const getPokemones = async () => {
+    await PokemonUseCases.getPokemons();
   };
 
   return (
