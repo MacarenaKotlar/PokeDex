@@ -12,7 +12,7 @@ import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { customAnt } from "../../helpers/customAnt";
 import { typesOptions } from "../../helpers/selectOptionsTypes";
-import { IPokemon } from "../../mock";
+import { IPokemon, listaPokemones } from "../../mock";
 import { DisplayStat } from "../displayStats/displayStats";
 import { TagRender } from "../tagRender/tagRender";
 import ColorTags from "../type tags/tags";
@@ -213,7 +213,13 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
               <div className={styles.pokemonDetails_details_traits_item}>
                 <DisplayStat
                   pokemon={pokemon}
-                  stat={pokemon && pokemon.height ? pokemon.height / 10 : 0}
+                  stat={
+                    pokemon &&
+                    pokemon.height &&
+                    location.pathname.includes("detail")
+                      ? pokemon.height / 10
+                      : pokemon?.height
+                  }
                   statName="Altura"
                   unit="m"
                 />
@@ -221,7 +227,13 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
               <div className={styles.pokemonDetails_details_traits_item}>
                 <DisplayStat
                   pokemon={pokemon}
-                  stat={pokemon && pokemon.weigth ? pokemon.weigth / 10 : 0}
+                  stat={
+                    pokemon &&
+                    pokemon.weigth &&
+                    location.pathname.includes("detail")
+                      ? pokemon.weigth / 10
+                      : pokemon?.weigth
+                  }
                   statName="Peso"
                   unit="Kg"
                 />
@@ -280,10 +292,17 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                   ) : (
                     <ArrowRightOutlined />
                   );
+
+                const evolutionID = listaPokemones.find(
+                  (p) => p.name === evolution.name
+                )?.id;
+
+                const sendToEvolution = `/detail/${evolutionID}`;
+
                 return (
                   <>
                     {flecha}
-                    <Link to="">
+                    <Link to={sendToEvolution} onClick={window.location.reload}>
                       <img src={evolution.img} alt={evolution.name} />
                     </Link>
                   </>
