@@ -9,7 +9,7 @@ export function NavBar() {
           <Link to="/">Inicio</Link>
         </li>
         <li>
-          <Link to="">Favoritos</Link>
+          <Link to="/favorites">Favoritos</Link>
         </li>
         <li>
           <Link to="/creation">Crear Pokémon</Link>
