@@ -8,11 +8,11 @@ export interface IPokemon{
     name: string;
     types: string[];
     height: number;
-    weigth: number;
+    weight: number;
     experience: number;
-    health: number
+    health: number;
     attack: number;
-    defence: number;
+    defense: number;
     speed: number;
     img: string;
     source: string;
