@@ -1,0 +1,54 @@
+{   "pokemons": [
+    {
+      "id": 10278,
+      "name": "no sé",
+      "types": [],
+      "height": 10,
+      "weigth": 100,
+      "experience": 50,
+      "health": 50,
+      "attack": 50,
+      "defence": 50,
+      "speed": 50,
+      "img": "https://i.pinimg.com/564x/4f/07/6b/4f076b2907c8b9d1445725ec860c788d.jpg",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": 102789,
+      "name": "dfssdgsdf",
+      "types": [
+        "fire",
+        "electric"
+      ],
+      "height": 4,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": 102789,
+      "name": "fajnfijafnbs",
+      "types": [
+        "flying",
+        "electric"
+      ],
+      "height": 4,
+      "weight": 3,
+      "experience": 2,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    }
+  ]
+}
