@@ -25,7 +25,7 @@ function Edit() {
     <>
       {pokemon && (
         <main className="mainCenter">
-          <DetailsCard pokemon={pokemon} />
+          <DetailsCard key={pokemon.id} pokemon={pokemon} />
         </main>
       )}
     </>

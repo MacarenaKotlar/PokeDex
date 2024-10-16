@@ -6,11 +6,11 @@ const emptyPokemon: IPokemon = {
   name: "",
   types: [],
   height: 0,
-  weigth: 0,
+  weight: 0,
   experience: 0,
   health: 0,
   attack: 0,
-  defence: 0,
+  defense: 0,
   speed: 0,
   img: "",
   source: "",
@@ -21,7 +21,7 @@ function Creation() {
   return (
     <>
       <main className="mainCenter">
-        <DetailsCard pokemon={emptyPokemon} />
+        <DetailsCard key={emptyPokemon.id} pokemon={emptyPokemon} />
       </main>
     </>
   );
