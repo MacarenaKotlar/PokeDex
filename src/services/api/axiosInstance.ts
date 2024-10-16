@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-const baseUrl = 'https://pokeapi.co/api/v2/';
+const baseUrl = 'https://pokeapi.co/api/v2';
 
 export const axiosInstance = axios.create({
   baseURL: baseUrl,
