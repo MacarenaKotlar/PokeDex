@@ -11,9 +11,7 @@ import Favorites from "./screens/favorites";
 function App() {
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
+      <NavBar></NavBar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<Details />} />
