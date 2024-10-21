@@ -1,7 +1,6 @@
-import { ConfigProvider, Input, InputNumber } from "antd";
+import { ConfigProvider, Form, Input, InputNumber } from "antd";
 import { customAnt } from "../../helpers/customAnt";
 import { IPokemon } from "../../mock";
-import { useEffect } from "react";
 
 const inputNumberWidth = "50%";
 
@@ -10,6 +9,9 @@ interface IDisplayStatProps {
   unit: string;
   statName: string;
   pokemon?: IPokemon;
+  name: string;
+  onChange: (e: React.ChangeEvent<any>) => void;
+  value: any;
 }
 
 export function DisplayStat({
@@ -17,10 +19,10 @@ export function DisplayStat({
   unit,
   statName,
   pokemon,
+  name,
+  onChange,
+  value,
 }: IDisplayStatProps) {
-  useEffect(() => {
-    console.log(pokemon);
-  }, [pokemon]);
   return (
     <>
       {location.pathname.includes("detail") ? (
@@ -38,21 +40,39 @@ export function DisplayStat({
         <>
           <ConfigProvider theme={customAnt}>
             {stat === pokemon?.name ? (
-              <Input
-                showCount
-                maxLength={20}
-                defaultValue={stat}
-                placeholder={statName}
-              />
+              <Form.Item
+                name={name}
+                style={{
+                  width: "100%",
+                  margin: "0",
+                }}
+                rules={[{ required: true, message: "Ingrese el nombre" }]}
+              >
+                <Input
+                  showCount
+                  maxLength={20}
+                  defaultValue={stat}
+                  placeholder={statName}
+                  onChange={onChange}
+                  value={value}
+                />
+              </Form.Item>
             ) : (
               <>
                 <span>{statName}:</span>
-                <InputNumber
-                  min={1}
-                  defaultValue={stat}
-                  placeholder={statName}
-                  style={{ width: inputNumberWidth }}
-                />
+                <Form.Item
+                  name={name}
+                  style={{ width: inputNumberWidth, margin: "0" }}
+                >
+                  <InputNumber
+                    min={1}
+                    defaultValue={stat}
+                    placeholder={statName}
+                    style={{ width: "100%" }}
+                    onChange={onChange}
+                    value={value}
+                  />
+                </Form.Item>
               </>
             )}
           </ConfigProvider>
@@ -61,16 +81,39 @@ export function DisplayStat({
         <>
           <ConfigProvider theme={customAnt}>
             {statName === "Nombre del Pokémon" ? (
-              <Input showCount maxLength={20} placeholder={statName} />
+              <Form.Item
+                name={name}
+                className="form-item"
+                style={{ width: "100%", margin: "0" }}
+                rules={[
+                  { required: true, message: "Ingrese el nombre del Pokémon" },
+                ]}
+              >
+                <Input
+                  showCount
+                  maxLength={20}
+                  placeholder={statName}
+                  onChange={onChange}
+                  value={value}
+                />
+              </Form.Item>
             ) : (
               <>
                 <span>{statName}:</span>
-                <InputNumber
-                  min={1}
-                  defaultValue={1}
-                  placeholder={statName}
-                  style={{ width: inputNumberWidth }}
-                />
+                <Form.Item
+                  name={name}
+                  className="form-item"
+                  style={{ width: inputNumberWidth, margin: "0" }}
+                >
+                  <InputNumber
+                    min={1}
+                    defaultValue={1}
+                    placeholder={statName}
+                    style={{ width: "100%" }}
+                    onChange={onChange}
+                    value={value}
+                  />
+                </Form.Item>
               </>
             )}
           </ConfigProvider>

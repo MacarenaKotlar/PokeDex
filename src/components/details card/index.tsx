@@ -6,7 +6,7 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import type { GetProp, UploadFile, UploadProps } from "antd";
-import { ConfigProvider, Flex, Image, Select, Upload } from "antd";
+import { ConfigProvider, Flex, Form, Image, Select, Upload } from "antd";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -18,6 +18,10 @@ import { TagRender } from "../tagRender/tagRender";
 import ColorTags from "../type tags/tags";
 import styles from "./index.module.scss";
 import { SelectEvolutions } from "../selectEvolutions/selectEvolutions";
+import { useFormik } from "formik";
+import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
+import { v4 } from "uuid";
+import * as Yup from "yup";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -52,6 +56,43 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
     setFavorite(!favorite);
   };
 
+  const numericUUID = v4().replace(/\D/g, "").slice(0, 8);
+
+  const validationSchema = Yup.object({
+    types: Yup.array().min(1, "Debe seleccionar al menos un tipo"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      id: parseInt(numericUUID),
+      name: "",
+      types: [],
+      height: 1,
+      weight: 1,
+      experience: 1,
+      health: 1,
+      attack: 1,
+      defense: 1,
+      speed: 1,
+      img: "",
+      source: "local",
+      evolutions: [],
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      editBtnsClick({
+        titleText: location.pathname.includes("edit")
+          ? "¿Desea guardar los cambios?"
+          : "¿Desea crear este Pokémon?",
+        buttonText: location.pathname.includes("edit") ? "Guardar" : "Crear",
+        successText: location.pathname.includes("edit")
+          ? "Cambios guardados"
+          : "Se creó el Pokémon",
+      });
+      console.log(values);
+    },
+  });
+
   const editBtnsClick = ({
     titleText,
     buttonText,
@@ -68,6 +109,8 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log(formik.values);
+        PokemonUseCases.postPokemon(formik.values);
         Swal.fire({
           title: successText,
           icon: "success",
@@ -91,7 +134,7 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
     setFileList(newFileList);
 
   return (
-    <div className={styles.container}>
+    <Form className={styles.container} onFinish={formik.handleSubmit}>
       <div className={styles.detailsContainer}>
         <div
           className={styles.pokemonImage}
@@ -147,6 +190,11 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                 stat={pokemon?.name}
                 statName="Nombre del Pokémon"
                 unit=""
+                name="name"
+                onChange={(e) => {
+                  formik.setFieldValue("name", e.target.value);
+                }}
+                value={formik.values.name}
               />
             </div>
             <div className={styles.pokemonDetails_buttons}>
@@ -176,7 +224,7 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
             <div className={styles.pokemonDetails_details_traits}>
               <div className={styles.pokemonDetails_details_traits_item}>
                 <span>Tipo:</span>
-                <aside>
+                <aside /* key={pokemon?.id} */>
                   {location.pathname.includes("detail")
                     ? pokemon?.types?.map((type) => {
                         const spanBackground = ColorTags(type);
@@ -195,19 +243,36 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                       })
                     : (location.pathname.includes("edit") ||
                         location.pathname.includes("creation")) && (
-                        <ConfigProvider theme={customAnt}>
-                          <Select
-                            mode="multiple"
-                            tagRender={TagRender}
-                            style={{ width: "100%" }}
-                            options={typesOptions}
-                            placeholder="Seleccione los Tipos"
-                            maxCount={2}
-                            defaultValue={pokemon?.types?.map((type) => {
-                              return type;
-                            })}
-                          />
-                        </ConfigProvider>
+                        <Form.Item
+                          style={{ width: "100%", margin: "0" }}
+                          validateStatus={
+                            formik.touched.types && formik.errors.types
+                              ? "error"
+                              : "success"
+                          }
+                          help={
+                            formik.touched.types && formik.errors.types
+                              ? formik.errors.types
+                              : null
+                          }
+                        >
+                          <ConfigProvider theme={customAnt}>
+                            <Select
+                              mode="multiple"
+                              tagRender={TagRender}
+                              style={{ width: "100%" }}
+                              options={typesOptions}
+                              placeholder="Seleccione los Tipos"
+                              maxCount={2}
+                              defaultValue={pokemon?.types?.map((type) => {
+                                return type;
+                              })}
+                              onChange={(values) => {
+                                formik.setFieldValue("types", values);
+                              }}
+                            />
+                          </ConfigProvider>
+                        </Form.Item>
                       )}
                 </aside>
               </div>
@@ -224,6 +289,11 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                   }
                   statName="Altura"
                   unit="m"
+                  name="height"
+                  onChange={(values) => {
+                    formik.setFieldValue("height", values);
+                  }}
+                  value={formik.values.height}
                 />
               </div>
               <div className={styles.pokemonDetails_details_traits_item}>
@@ -231,13 +301,18 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                   pokemon={pokemon}
                   stat={
                     pokemon &&
-                    pokemon.weigth &&
+                    pokemon.weight &&
                     location.pathname.includes("detail")
-                      ? pokemon.weigth / 10
-                      : pokemon?.weigth
+                      ? pokemon.weight / 10
+                      : pokemon?.weight
                   }
                   statName="Peso"
                   unit="Kg"
+                  name="weight"
+                  onChange={(values) => {
+                    formik.setFieldValue("weight", values);
+                  }}
+                  value={formik.values.weight}
                 />
               </div>
               <div className={styles.pokemonDetails_details_traits_item}>
@@ -246,6 +321,11 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                   stat={pokemon?.experience}
                   statName="Experiencia"
                   unit="xp"
+                  name="experience"
+                  onChange={(values) => {
+                    formik.setFieldValue("experience", values);
+                  }}
+                  value={formik.values.experience}
                 />
               </div>
             </div>
@@ -256,6 +336,11 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                   stat={pokemon?.health}
                   statName="Salud"
                   unit=""
+                  name="health"
+                  onChange={(values) => {
+                    formik.setFieldValue("health", values);
+                  }}
+                  value={formik.values.health}
                 />
               </div>
               <div className={styles.pokemonDetails_details_traits_item}>
@@ -264,14 +349,24 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                   stat={pokemon?.attack}
                   statName="Ataque"
                   unit=""
+                  name="attack"
+                  onChange={(values) => {
+                    formik.setFieldValue("attack", values);
+                  }}
+                  value={formik.values.attack}
                 />
               </div>
               <div className={styles.pokemonDetails_details_traits_item}>
                 <DisplayStat
                   pokemon={pokemon}
-                  stat={pokemon?.defence}
+                  stat={pokemon?.defense}
                   statName="Defensa"
                   unit=""
+                  name="defense"
+                  onChange={(values) => {
+                    formik.setFieldValue("defense", values);
+                  }}
+                  value={formik.values.defense}
                 />
               </div>
               <div className={styles.pokemonDetails_details_traits_item}>
@@ -280,6 +375,11 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                   stat={pokemon?.speed}
                   statName="Velocidad"
                   unit=""
+                  name="speed"
+                  onChange={(values) => {
+                    formik.setFieldValue("speed", values);
+                  }}
+                  value={formik.values.speed}
                 />
               </div>
             </div>
@@ -335,25 +435,9 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
       {(location.pathname.includes("edit") ||
         location.pathname.includes("creation")) && (
         <div className={styles.editButtons}>
-          <Link
-            to=""
-            className={styles.editButtons_edit}
-            onClick={() =>
-              editBtnsClick({
-                titleText: location.pathname.includes("edit")
-                  ? "¿Desea guardar los cambios?"
-                  : "¿Desea crear este Pokémon?",
-                buttonText: location.pathname.includes("edit")
-                  ? "Guardar"
-                  : "Crear",
-                successText: location.pathname.includes("edit")
-                  ? "Cambios guardados"
-                  : "Se creó el Pokémon",
-              })
-            }
-          >
+          <button type="submit" className={styles.editButtons_edit}>
             {location.pathname.includes("edit") ? "Editar" : "Crear"}
-          </Link>
+          </button>
           <a
             className={styles.editButtons_delete}
             onClick={() => {
@@ -370,6 +454,6 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
           </a>
         </div>
       )}
-    </div>
+    </Form>
   );
 }
