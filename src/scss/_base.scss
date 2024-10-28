@@ -25,6 +25,11 @@ header{
     min-height: 100%;
     @include flex(row, space-between);
     align-items: flex-start;
+
+    .homeContainer{
+        padding: 2vw;
+        @include flex(column, center);
+    }
     
     .cardsContainer{
         display: grid;
@@ -33,6 +38,29 @@ header{
         row-gap: 4vw;
         padding: 2vw;
         align-self: flex-start;
+    }
+
+    .paginationContainer{
+        width: 100%;
+        @include flex(row, center);
+        gap: 2vw;
+
+        button{
+            background-color: transparent;
+            border: none;
+            font-size: 1vw;
+            color: white;
+
+            &:hover{
+                color: rgb(255,219,90);
+            }
+        }
+
+        div{
+            width: 20%;
+            @include flex(row, center);
+            gap: 1vw;
+        }
     }
 }
 
