@@ -214,12 +214,14 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                   >
                     {star}
                   </a>
-                  <Link
-                    to={`/edit/${pokemon?.id}`}
-                    className={styles.pokemonDetails_buttons_editBtn}
-                  >
-                    <EditOutlined />
-                  </Link>
+                  {pokemon?.source === "local" && (
+                    <Link
+                      to={`/edit/${pokemon?.source}/${pokemon?.id}`}
+                      className={styles.pokemonDetails_buttons_editBtn}
+                    >
+                      <EditOutlined />
+                    </Link>
+                  )}
                 </>
               )}
             </div>

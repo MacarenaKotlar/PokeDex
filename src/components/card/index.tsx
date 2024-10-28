@@ -48,7 +48,10 @@ export function Card({ id, name, image, attackPoints, source }: ICard) {
               {star}
             </a>
             {source === "local" && (
-              <Link to={`/edit/${id}`} className="pokemonCard-buttons-editBtn">
+              <Link
+                to={`/edit/${source}/${id}`}
+                className="pokemonCard-buttons-editBtn"
+              >
                 <EditOutlined />
               </Link>
             )}
