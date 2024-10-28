@@ -23,9 +23,17 @@
 }
 
 .pokemonCard_title{
+    max-width: 50%;
     gap: 0.7vw;
     padding: $cardHeaderPadding;
     @include flex(row, center);
+
+}
+
+.pokemon_name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .pokemonCard_buttons{
