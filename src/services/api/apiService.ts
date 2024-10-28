@@ -47,4 +47,4 @@ const getPokemones = async ({offset}:{offset?:number},{limit}:{limit?: number}) 
     }
 }
 
-export const APIService = {getPokemones}
+export const APIService = {getPokemones, getPokemonDetails}

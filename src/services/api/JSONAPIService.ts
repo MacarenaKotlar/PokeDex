@@ -3,6 +3,17 @@ import { JSONAxiosInstance } from "./JSONAxiosInstance";
 
 export let totalLocalPokemons:number;
 
+const getLocalPokemonDetails = async (url:string) => {
+    try{
+        const {data} = await JSONAxiosInstance.get(url)
+        return data;
+    }
+
+    catch(e:any){
+        throw new Error(e.message)
+    }
+}
+
 const getLocalPokemones = async () => {
     try{
         const {data} = await JSONAxiosInstance.get('/pokemons');
@@ -25,4 +36,4 @@ const postPokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const JSONAPIService = {getLocalPokemones, postPokemon}
+export const JSONAPIService = {getLocalPokemones, getLocalPokemonDetails, postPokemon}

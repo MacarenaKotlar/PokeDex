@@ -32,6 +32,29 @@ const getPokemons = async (pageNumber:number, pageSize:number) => {
     }
 }
 
+const getPokemon = async (id?:string, source?:string) => {
+    let fetch
+    if (id && source) {
+        console.log(id)
+        console.log(source)
+        if(source === "local"){
+            fetch = await JSONAPIService.getLocalPokemonDetails('pokemons/' + id)
+            console.log("getLocalPokemons")
+            console.log(id);
+        }
+        else if(source === "api"){
+            fetch = await APIService.getPokemonDetails('pokemon/' + id)
+            console.log("getAPIPokemons")
+            console.log(id);
+        }
+        console.log("Fetch: ", fetch);
+        return fetch;
+    }
+    else{
+        console.log("No se encontró el Pokémon");
+    }
+}
+
 const postPokemon = async (pokemon:IPokemon) => {
     try {
         await JSONAPIService.postPokemon(pokemon)
@@ -40,4 +63,4 @@ const postPokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const PokemonUseCases = {getLocalPokemons, getPokemons, postPokemon}
+export const PokemonUseCases = {getLocalPokemons, getPokemons, getPokemon, postPokemon}
