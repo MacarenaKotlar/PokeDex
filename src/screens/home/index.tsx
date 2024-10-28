@@ -26,7 +26,7 @@ function Home() {
 
   useEffect(() => {
     getPokemones();
-  }, [page, pageSize]);
+  }, [page]);
 
   const customPagination = {
     components: {
