@@ -184,7 +184,11 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
         <div className={styles.pokemonDetails}>
           <div className={styles.pokemonDetails_header}>
             <div className={styles.pokemonDetails_title}>
-              <h3>{pokemon?.id}</h3>
+              {location.pathname.includes("creation") ? (
+                <h3>{formik.initialValues.id}</h3>
+              ) : (
+                <h3>{pokemon?.id}</h3>
+              )}
               <DisplayStat
                 pokemon={pokemon}
                 stat={pokemon?.name}
