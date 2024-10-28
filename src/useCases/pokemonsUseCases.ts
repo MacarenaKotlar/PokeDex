@@ -32,21 +32,18 @@ const getPokemons = async (pageNumber:number, pageSize:number) => {
     }
 }
 
-const getPokemon = async (id?:string, source?:string) => {
+const getPokemon = async (source?:string, id?:string) => {
     let fetch
-    if (id && source) {
-        console.log(id)
-        console.log(source)
-        if(source === "local"){
+    if (source && id) {
+        source === 'local'
+        ?
             fetch = await JSONAPIService.getLocalPokemonDetails('pokemons/' + id)
-            console.log("getLocalPokemons")
-            console.log(id);
-        }
-        else if(source === "api"){
-            fetch = await APIService.getPokemonDetails('pokemon/' + id)
-            console.log("getAPIPokemons")
-            console.log(id);
-        }
+        :
+            source === 'api'
+            ?
+                fetch = await APIService.getPokemonDetails('pokemon/' + id)
+            :
+                fetch = null
         console.log("Fetch: ", fetch);
         return fetch;
     }
