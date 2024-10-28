@@ -9,16 +9,16 @@ const initialData:IInitialData = {
     pokemons:[]
 }
 
+const globalState = create(() => initialData)
+
 const getPokemons = () => {
     return globalState(store => store.pokemons)
 }
 
 const setPokemons = (pokemons:IPokemon[]) => {
     globalState.setState(prev => ({
-        ...prev,pokemons
+        ...prev, pokemons
     }))
 }
-
-const globalState = create(() => initialData)
 
 export const GlobalStateService = {getPokemons, setPokemons}

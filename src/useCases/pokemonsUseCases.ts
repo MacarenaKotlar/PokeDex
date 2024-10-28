@@ -1,12 +1,31 @@
 import { IPokemon } from "../mock"
 import { APIService } from "../services/api/APIService"
-import { JSONAPIService } from "../services/api/JSONAPIService"
+import { JSONAPIService, totalLocalPokemons } from "../services/api/JSONAPIService"
 import { GlobalStateService } from "../services/globalStateService"
 
-const getPokemons = async () => {
+const getLocalPokemons = async () => {
     try{
-        const response = await APIService.getPokemones({limit: 20})
-        GlobalStateService.setPokemons(response)
+        const localResponse = await JSONAPIService.getLocalPokemones()
+        GlobalStateService.setPokemons(localResponse)
+    }
+    catch(e:any){
+        console.log(e)
+    }
+}
+
+const getPokemons = async (pageNumber:number, pageSize:number) => {
+    try{
+        const localResponse = await JSONAPIService.getLocalPokemones()
+        const localPokemons = pageNumber < totalLocalPokemons ? localResponse.slice(0, pageNumber + pageSize) : localResponse
+
+        console.log("totalLocalPokemons: ", totalLocalPokemons)
+
+        const APIOffset = totalLocalPokemons >= pageNumber + pageSize ? -1 : 0
+        const APILimit = APIOffset >= 0 ? pageNumber + pageSize - totalLocalPokemons : 0
+        
+        const response = await APIService.getPokemones({offset: APIOffset}, {limit: APILimit})
+        
+        GlobalStateService.setPokemons([...localPokemons, ...response])
     }
     catch(e:any){
         console.log(e)
@@ -21,4 +40,4 @@ const postPokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const PokemonUseCases = {getPokemons, postPokemon}
+export const PokemonUseCases = {getLocalPokemons, getPokemons, postPokemon}
