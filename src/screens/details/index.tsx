@@ -3,9 +3,11 @@ import { DetailsCard } from "../../components/details card";
 import { useEffect, useState } from "react";
 import { IPokemon } from "../../mock";
 import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
+import { Loader } from "../../components/loader";
 
 function Details() {
   const [pokemon, setPokemon] = useState<IPokemon>();
+  const [loading, setLoading] = useState(true);
 
   const { source } = useParams();
   const { id } = useParams();
@@ -16,14 +18,21 @@ function Details() {
   };
 
   useEffect(() => {
-    getPokemon();
+    setLoading(true);
+    getPokemon().then(() => {
+      setTimeout(() => setLoading(false), 1000);
+    });
   }, [id]);
 
   return (
     <>
       {pokemon && (
         <main className="mainCenter">
-          <DetailsCard key={pokemon.id} pokemon={pokemon} />
+          {loading ? (
+            <Loader />
+          ) : (
+            <DetailsCard key={pokemon.id} pokemon={pokemon} />
+          )}
         </main>
       )}
     </>
