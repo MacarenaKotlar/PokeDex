@@ -7,11 +7,13 @@ import { ConfigProvider, Select } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 function Home() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
+  const [limit, setLimit] = useState(20);
 
   const handlePageChange = () => {
-    setPage(page + pageSize);
+    setPage(page + 1);
+    setLimit(limit + pageSize);
   };
 
   const handlePageSizeChange = (value: number) => {
@@ -21,7 +23,7 @@ function Home() {
   const pokemones = GlobalStateService.getPokemons();
 
   const getPokemones = async () => {
-    await PokemonUseCases.getPokemons(page, pageSize);
+    await PokemonUseCases.getPokemons(page, limit);
   };
 
   useEffect(() => {

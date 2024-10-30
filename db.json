@@ -1,27 +1,13 @@
-{   "pokemons": [
+{
+  "pokemons": [
     {
-      "id": 10278,
-      "name": "no sé",
-      "types": [],
-      "height": 10,
-      "weigth": 100,
-      "experience": 50,
-      "health": 50,
-      "attack": 50,
-      "defence": 50,
-      "speed": 50,
-      "img": "https://i.pinimg.com/564x/4f/07/6b/4f076b2907c8b9d1445725ec860c788d.jpg",
-      "source": "local",
-      "evolutions": []
-    },
-    {
-      "id": 102789,
-      "name": "dfssdgsdf",
+      "id": "33370860",
+      "name": "gsgfdgfd",
       "types": [
-        "fire",
-        "electric"
+        "water",
+        "flying"
       ],
-      "height": 4,
+      "height": 1,
       "weight": 1,
       "experience": 1,
       "health": 1,
@@ -33,15 +19,753 @@
       "evolutions": []
     },
     {
-      "id": 102789,
-      "name": "fajnfijafnbs",
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
       "types": [
-        "flying",
-        "electric"
+        "poison",
+        "water"
       ],
-      "height": 4,
-      "weight": 3,
-      "experience": 2,
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "1",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "2",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "3",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "4",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "5",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "6",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "7",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "8",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "9",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "10",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "11",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "12",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "13",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "14",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "15",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "16",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "17",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "18",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "19",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "20",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "21",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "22",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "23",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "24",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "25",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "33370860",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "33370860",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "33370860",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "33370860",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "33370860",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "33370860",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "33370860",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "68209186",
+      "name": "cbxckjzxbckjzs",
+      "types": [
+        "poison",
+        "water"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "33370860",
+      "name": "gsgfdgfd",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
       "health": 1,
       "attack": 1,
       "defense": 1,

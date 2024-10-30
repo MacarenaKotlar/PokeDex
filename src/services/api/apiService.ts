@@ -25,15 +25,11 @@ const getPokemonDetails = async (url: string): Promise<IPokemon> => {
     }
 }
 
-export let totalAPIPokemons:number;
-
 const getPokemones = async ({offset}:{offset?:number},{limit}:{limit?: number}) => {
     try{
         const {data} = await axiosInstance.get('/pokemon/', {params: {
             offset, limit
         }});
-
-        totalAPIPokemons = data.count
 
         const pokemons = await Promise.all(
             data.results.map((pokemon: any) => getPokemonDetails(pokemon.url))

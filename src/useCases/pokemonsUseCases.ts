@@ -1,6 +1,6 @@
 import { IPokemon } from "../mock"
 import { APIService } from "../services/api/APIService"
-import { JSONAPIService, totalLocalPokemons } from "../services/api/JSONAPIService"
+import { JSONAPIService } from "../services/api/JSONAPIService"
 import { GlobalStateService } from "../services/globalStateService"
 
 const getLocalPokemons = async () => {
@@ -13,15 +13,16 @@ const getLocalPokemons = async () => {
     }
 }
 
-const getPokemons = async (pageNumber:number, pageSize:number) => {
+const getPokemons = async (pageNumber:number, limit:number) => {
     try{
         const localResponse = await JSONAPIService.getLocalPokemones()
-        const localPokemons = pageNumber < totalLocalPokemons ? localResponse.slice(0, pageNumber + pageSize) : localResponse
 
-        console.log("totalLocalPokemons: ", totalLocalPokemons)
+        const localPokemonsSlice = localResponse.slice(0, limit)
+        const localPokemonsPages = Math.ceil(localResponse.length/limit)
+        const localPokemons = pageNumber <= localPokemonsPages ? localPokemonsSlice : localResponse
 
-        const APIOffset = totalLocalPokemons >= pageNumber + pageSize ? -1 : 0
-        const APILimit = APIOffset >= 0 ? pageNumber + pageSize - totalLocalPokemons : 0
+        const APIOffset = localPokemonsPages >= pageNumber ? -1 : 0
+        const APILimit = APIOffset >= 0 ? limit - localResponse.length : 0
         
         const response = await APIService.getPokemones({offset: APIOffset}, {limit: APILimit})
         
@@ -44,7 +45,9 @@ const getPokemon = async (source?:string, id?:string) => {
                 fetch = await APIService.getPokemonDetails('pokemon/' + id)
             :
                 fetch = null
-        console.log("Fetch: ", fetch);
+                
+        fetch === null && console.log("No se encontró el Pokémon");
+        
         return fetch;
     }
     else{

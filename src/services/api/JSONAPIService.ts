@@ -1,8 +1,6 @@
 import { IPokemon } from "../../mock";
 import { JSONAxiosInstance } from "./JSONAxiosInstance";
 
-export let totalLocalPokemons:number;
-
 const getLocalPokemonDetails = async (url:string) => {
     try{
         const {data} = await JSONAxiosInstance.get(url)
@@ -17,8 +15,6 @@ const getLocalPokemonDetails = async (url:string) => {
 const getLocalPokemones = async () => {
     try{
         const {data} = await JSONAxiosInstance.get('/pokemons');
-
-        totalLocalPokemons = data.length
         
         return data;
     }
