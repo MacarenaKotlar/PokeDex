@@ -12,7 +12,7 @@ const getLocalPokemonDetails = async (url:string) => {
     }
 }
 
-const getLocalPokemones = async () => {
+const getLocalPokemons = async () => {
     try{
         const {data} = await JSONAxiosInstance.get('/pokemons');
         
@@ -32,4 +32,4 @@ const postPokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const JSONAPIService = {getLocalPokemones, getLocalPokemonDetails, postPokemon}
+export const JSONAPIService = {getLocalPokemons, getLocalPokemonDetails, postPokemon}
