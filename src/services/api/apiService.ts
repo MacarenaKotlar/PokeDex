@@ -25,7 +25,7 @@ const getPokemonDetails = async (url: string): Promise<IPokemon> => {
     }
 }
 
-const getPokemones = async ({offset}:{offset?:number},{limit}:{limit?: number}) => {
+const getPokemons = async ({offset}:{offset?:number},{limit}:{limit?: number}) => {
     try{
         const {data} = await axiosInstance.get('/pokemon/', {params: {
             offset, limit
@@ -43,4 +43,4 @@ const getPokemones = async ({offset}:{offset?:number},{limit}:{limit?: number}) 
     }
 }
 
-export const APIService = {getPokemones, getPokemonDetails}
+export const APIService = {getPokemons, getPokemonDetails}
