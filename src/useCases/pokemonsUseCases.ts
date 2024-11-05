@@ -18,10 +18,10 @@ const getPokemons = async (pageNumber:number, limit:number) => {
         const localResponse = await JSONAPIService.getLocalPokemones()
 
         const localPokemonsSlice = localResponse.slice(0, limit)
-        const localPokemonsPages = Math.ceil(localResponse.length/limit)
-        const localPokemons = pageNumber <= localPokemonsPages ? localPokemonsSlice : localResponse
+        const localPokemonsPages = Math.ceil(localResponse.length/limit) * pageNumber
+        const localPokemons = pageNumber < localPokemonsPages ? localPokemonsSlice : localResponse
 
-        const APIOffset = localPokemonsPages >= pageNumber ? -1 : 0
+        const APIOffset = localPokemonsPages > pageNumber ? -1 : 0
         const APILimit = APIOffset >= 0 ? limit - localResponse.length : 0
         
         const response = await APIService.getPokemones({offset: APIOffset}, {limit: APILimit})
@@ -33,7 +33,7 @@ const getPokemons = async (pageNumber:number, limit:number) => {
     }
 }
 
-const getPokemon = async (source?:string, id?:string) => {
+const getPokemon = async (source?:string, id?:string,) => {
     let fetch
     if (source && id) {
         source === 'local'
