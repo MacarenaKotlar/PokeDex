@@ -7,13 +7,21 @@ import Details from "./screens/details";
 import Edit from "./screens/edit";
 import Creation from "./screens/creation";
 import Favorites from "./screens/favorites";
+import { FiltersProvider } from "./context/filters";
 
 function App() {
   return (
     <>
       <NavBar></NavBar>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <FiltersProvider>
+              <Home />
+            </FiltersProvider>
+          }
+        />
         <Route path="/detail/:source/:id" element={<Details />} />
         <Route path="/edit/:source/:id" element={<Edit />} />
         <Route path="/creation" element={<Creation />} />

@@ -3,30 +3,35 @@ import { APIService } from "../services/api/APIService"
 import { JSONAPIService } from "../services/api/JSONAPIService"
 import { GlobalStateService } from "../services/globalStateService"
 
-const getLocalPokemons = async () => {
-    try{
-        const localResponse = await JSONAPIService.getLocalPokemones()
-        GlobalStateService.setPokemons(localResponse)
-    }
-    catch(e:any){
-        console.log(e)
-    }
-}
+const getAll = async (pageNumber:number, limit:number, filter:string) => {
+    pageNumber === 1 && GlobalStateService.setPokemons([])
 
-const getPokemons = async (pageNumber:number, limit:number) => {
     try{
-        const localResponse = await JSONAPIService.getLocalPokemones()
+        let filteredPokemons
 
+        const localResponse = await JSONAPIService.getLocalPokemons()
         const localPokemonsSlice = localResponse.slice(0, limit)
         const localPokemonsPages = Math.ceil(localResponse.length/limit) * pageNumber
         const localPokemons = pageNumber < localPokemonsPages ? localPokemonsSlice : localResponse
 
-        const APIOffset = localPokemonsPages > pageNumber ? -1 : 0
-        const APILimit = APIOffset >= 0 ? limit - localResponse.length : 0
-        
-        const response = await APIService.getPokemones({offset: APIOffset}, {limit: APILimit})
-        
-        GlobalStateService.setPokemons([...localPokemons, ...response])
+        if(filter === 'all'){
+    
+            const APIOffset = localPokemonsPages > pageNumber ? -1 : 0
+            const APILimit = APIOffset >= 0 ? limit - localResponse.length : 0
+            const APIResponse = await APIService.getPokemons({offset: APIOffset}, {limit: APILimit})
+
+            filteredPokemons = [...localPokemons, ...APIResponse]
+        }
+        else if(filter === 'local'){
+            filteredPokemons = localPokemons
+        }
+        else if(filter === 'api'){
+            const APIResponse = await APIService.getPokemons({offset: 0}, {limit: limit})
+
+            filteredPokemons = APIResponse
+        }
+
+        GlobalStateService.setPokemons(filteredPokemons)
     }
     catch(e:any){
         console.log(e)
@@ -63,4 +68,4 @@ const postPokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const PokemonUseCases = {getLocalPokemons, getPokemons, getPokemon, postPokemon}
+export const PokemonUseCases = {getAll, getPokemon, postPokemon}

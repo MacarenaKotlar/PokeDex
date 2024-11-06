@@ -5,11 +5,15 @@ import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
 import { GlobalStateService } from "../../services/globalStateService";
 import { ConfigProvider, Select } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import { useFilters } from "../../hooks/useFilters";
 
 function Home() {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
-  const [limit, setLimit] = useState(20);
+  const pageInitialValue = 1;
+  const pageSizeLimitInitialValue = 20;
+  const [page, setPage] = useState(pageInitialValue);
+  const [pageSize, setPageSize] = useState(pageSizeLimitInitialValue);
+  const [limit, setLimit] = useState(pageSizeLimitInitialValue);
+  const { filters } = useFilters();
 
   const handlePageChange = () => {
     setPage(page + 1);
@@ -22,12 +26,19 @@ function Home() {
 
   const pokemones = GlobalStateService.getPokemons();
 
-  const getPokemones = async () => {
-    await PokemonUseCases.getPokemons(page, limit);
+  const getPokemons = async () => {
+    await PokemonUseCases.getAll(page, limit, filters.existence);
   };
 
   useEffect(() => {
-    getPokemones();
+    setPage(pageInitialValue);
+    setPageSize(pageSizeLimitInitialValue);
+    setLimit(pageSizeLimitInitialValue);
+    getPokemons();
+  }, [filters]);
+
+  useEffect(() => {
+    getPokemons();
   }, [page]);
 
   const customPagination = {
