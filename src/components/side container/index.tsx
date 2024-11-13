@@ -1,12 +1,20 @@
 import type { SelectProps } from "antd";
-import { Select, Tag } from "antd";
+import { Select } from "antd";
 import { ConfigProvider } from "antd";
 import styles from "./index.module.scss";
-import ColorTags from "../type tags/tags";
 import { useFilters } from "../../hooks/useFilters";
+import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
+import { useEffect, useState } from "react";
+import { TagRender } from "../tagRender/tagRender";
+
+interface IType {
+  name: string;
+  url: string;
+}
 
 export function SideContainer() {
   const { filters, setFilters } = useFilters();
+  const [types, setTypes] = useState<SelectProps["options"]>([]);
 
   const hanldeExistenceFilterChange = (value: string) => {
     setFilters((prevstate: any) => ({
@@ -14,57 +22,30 @@ export function SideContainer() {
       existence: value,
     }));
   };
-  type TagRender = SelectProps["tagRender"];
 
-  const options: SelectProps["options"] = [
-    {
-      label: "Planta",
-      value: "grass",
-    },
-    {
-      label: "Veneno",
-      value: "poison",
-    },
-    {
-      label: "Fuego",
-      value: "fire",
-    },
-    {
-      label: "Volador",
-      value: "flying",
-    },
-    {
-      label: "Agua",
-      value: "water",
-    },
-    {
-      label: "Eléctrico",
-      value: "electric",
-    },
-    {
-      label: "Psíquico",
-      value: "psychic",
-    },
-  ];
-
-  const tagRender: TagRender = (props) => {
-    const { label, value, closable, onClose } = props;
-    const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
-      event.preventDefault();
-      event.stopPropagation();
-    };
-    return (
-      <Tag
-        color={ColorTags(value)}
-        onMouseDown={onPreventMouseDown}
-        closable={closable}
-        onClose={onClose}
-        style={{ marginInlineEnd: 4 }}
-      >
-        {label}
-      </Tag>
-    );
+  const hanldeTypesFilterChange = (value: string[]) => {
+    setFilters((prevstate: any) => ({
+      ...prevstate,
+      types: value,
+    }));
   };
+
+  function firstLetterToUpperCase(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  useEffect(() => {
+    const getTypes = async () => {
+      const types = await PokemonUseCases.getTypes();
+      const mapedTypes = types.map((type: IType) => ({
+        value: type.name,
+        label: firstLetterToUpperCase(type.name),
+      }));
+      setTypes(mapedTypes);
+      console.log(mapedTypes);
+    };
+    getTypes();
+  }, []);
 
   const orderBySelectOptions = [
     { value: "Por Defecto", label: "Por Defecto" },
@@ -114,10 +95,12 @@ export function SideContainer() {
             <span>Filtrar por Tipo</span>
             <Select
               mode="multiple"
-              tagRender={tagRender}
+              tagRender={TagRender}
               style={{ width: "100%" }}
-              options={options}
+              options={types}
               placeholder="Seleccione los Tipos"
+              onChange={hanldeTypesFilterChange}
+              value={filters.types}
             />
           </li>
 

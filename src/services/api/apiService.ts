@@ -5,6 +5,20 @@ function firstLetterToUpperCase(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+const getTypes = async ({offset}:{offset?:number}, {limit}:{limit?: number}) => {
+    try{
+        const {data} = await axiosInstance.get('/type/', {params: {
+            offset, limit
+        }});
+        
+        return data.results;
+    }
+
+    catch(e:any){
+        throw new Error(e.message);
+    }
+}
+
 const getPokemonDetails = async (url: string): Promise<IPokemon> => {
     const { data } = await axiosInstance.get(url);
 
@@ -25,7 +39,7 @@ const getPokemonDetails = async (url: string): Promise<IPokemon> => {
     }
 }
 
-const getPokemons = async ({offset}:{offset?:number},{limit}:{limit?: number}) => {
+const getPokemons = async ({offset}:{offset?:number}, {limit}:{limit?: number}) => {
     try{
         const {data} = await axiosInstance.get('/pokemon/', {params: {
             offset, limit
@@ -43,4 +57,20 @@ const getPokemons = async ({offset}:{offset?:number},{limit}:{limit?: number}) =
     }
 }
 
-export const APIService = {getPokemons, getPokemonDetails}
+const getPokemonsByTypes = async (url:string) => {
+    try{
+        const {data} = await axiosInstance.get(url);
+
+        const pokemons = await Promise.all(
+            data.pokemon.map((pokemon: any) => getPokemonDetails(pokemon.pokemon.url))
+        );
+        
+        return pokemons;
+    }
+
+    catch(e:any){
+        throw new Error(e.message);
+    }
+}
+
+export const APIService = {getTypes, getPokemons, getPokemonDetails, getPokemonsByTypes}
