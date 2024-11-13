@@ -24,16 +24,16 @@ function Home() {
     setPageSize(value);
   };
 
-  const pokemones = GlobalStateService.getPokemons();
+  const pokemons = GlobalStateService.getPokemons();
 
   const getPokemons = async () => {
-    await PokemonUseCases.getAll(page, limit, filters.existence);
+    await PokemonUseCases.getAll(page, limit, filters);
   };
 
   useEffect(() => {
-    setPage(pageInitialValue);
     setPageSize(pageSizeLimitInitialValue);
     setLimit(pageSizeLimitInitialValue);
+    setPage(pageInitialValue);
     getPokemons();
   }, [filters]);
 
@@ -73,7 +73,7 @@ function Home() {
         <SideContainer />
         <div className="homeContainer">
           <div className="cardsContainer">
-            {pokemones.map((pokemon) => (
+            {pokemons.map((pokemon) => (
               <Card
                 key={pokemon.id}
                 id={pokemon.id}
@@ -92,7 +92,7 @@ function Home() {
               <ConfigProvider theme={customPagination}>
                 <Select
                   options={pageSizeOptions}
-                  defaultValue={pageSize}
+                  value={pageSize}
                   onChange={handlePageSizeChange}
                 />
                 <span>Pokemones por página</span>
