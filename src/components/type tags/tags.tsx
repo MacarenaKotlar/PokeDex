@@ -18,7 +18,7 @@ function ColorTags(tagValue: string) {
     { value: "dragon", color: "#7038f8" },
     { value: "dark", color: "#705848" },
     { value: "fairy", color: "#ee99ac" },
-    { value: "stellar", color: "fffff" },
+    { value: "stellar", color: "#060731" },
   ];
 
   let typeColor;
