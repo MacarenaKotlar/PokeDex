@@ -6,6 +6,7 @@ import { GlobalStateService } from "../../services/globalStateService";
 import { ConfigProvider, Select } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useFilters } from "../../hooks/useFilters";
+import { IFilters } from "../../context/filters";
 
 function Home() {
   const pageInitialValue = 1;
@@ -26,7 +27,11 @@ function Home() {
 
   const pokemons = GlobalStateService.getPokemons();
 
-  const getPokemons = async () => {
+  const getPokemons = async (
+    page: number,
+    limit: number,
+    filters: IFilters
+  ) => {
     await PokemonUseCases.getAll(page, limit, filters);
   };
 
@@ -34,11 +39,11 @@ function Home() {
     setPageSize(pageSizeLimitInitialValue);
     setLimit(pageSizeLimitInitialValue);
     setPage(pageInitialValue);
-    getPokemons();
+    getPokemons(pageInitialValue, pageSizeLimitInitialValue, filters);
   }, [filters]);
 
   useEffect(() => {
-    getPokemons();
+    getPokemons(page, limit, filters);
   }, [page]);
 
   const customPagination = {
