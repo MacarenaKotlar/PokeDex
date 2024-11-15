@@ -26,15 +26,13 @@ function Edit() {
 
   return (
     <>
-      {pokemon && (
-        <main className="mainCenter">
-          {loading ? (
-            <Loader />
-          ) : (
-            <DetailsCard key={pokemon.id} pokemon={pokemon} />
-          )}
-        </main>
-      )}
+      <main className="mainCenter">
+        {loading ? (
+          <Loader />
+        ) : (
+          pokemon && <DetailsCard key={pokemon.id} pokemon={pokemon} />
+        )}
+      </main>
     </>
   );
 }
