@@ -1,6 +1,7 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 
 export interface IFilters {
+  sort: string;
   types: string[];
   existence: string;
 }
@@ -11,12 +12,13 @@ interface IFiltersContext {
 }
 
 export const FiltersContext = createContext<IFiltersContext>({
-  filters: { types: [], existence: "all" },
+  filters: { sort: "byID", types: [], existence: "all" },
   setFilters: () => {},
 });
 
 export function FiltersProvider({ children }: { children: React.ReactNode }) {
   const [filters, setFilters] = useState<IFilters>({
+    sort: "byID",
     types: [],
     existence: "all",
   });

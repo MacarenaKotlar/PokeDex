@@ -16,6 +16,13 @@ export function SideContainer() {
   const { filters, setFilters } = useFilters();
   const [types, setTypes] = useState<SelectProps["options"]>([]);
 
+  const hanldeSortChange = (value: string) => {
+    setFilters((prevstate: any) => ({
+      ...prevstate,
+      sort: value,
+    }));
+  };
+
   const hanldeExistenceFilterChange = (value: string) => {
     setFilters((prevstate: any) => ({
       ...prevstate,
@@ -48,10 +55,10 @@ export function SideContainer() {
   }, []);
 
   const orderBySelectOptions = [
-    { value: "Por Defecto", label: "Por Defecto" },
-    { value: "De la A a la Z", label: "De la A a la Z" },
-    { value: "De la Z a la A", label: "De la Z a la A" },
-    { value: "Por Ataque", label: "Por Ataque" },
+    { value: "byID", label: "Por Defecto" },
+    { value: "a-z", label: "De la A a la Z" },
+    { value: "z-a", label: "De la Z a la A" },
+    { value: "byAttack", label: "Por Ataque" },
   ];
 
   const filterSelectOptions = [
@@ -86,8 +93,9 @@ export function SideContainer() {
             <span>Ordenar</span>
             <Select
               style={{ width: "100%" }}
-              defaultValue="Por Defecto"
               options={orderBySelectOptions}
+              onChange={hanldeSortChange}
+              value={filters.sort}
             ></Select>
           </li>
 

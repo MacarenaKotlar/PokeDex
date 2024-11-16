@@ -9,9 +9,32 @@ const getTypes = async () => {
     return response;
 }
 
+const sortPokemons = async (pokemons:IPokemon[], sort:string) => {
+    pokemons.sort((a:any, b:any) => {
+        if(sort === "byID"){
+            return parseInt(a.id) - parseInt(b.id);
+        }
+
+        else if(sort === "a-z"){
+            return a.name.toUpperCase().localeCompare(b.name.toUpperCase());
+        }
+
+        else if(sort === "z-a"){
+            return b.name.toUpperCase().localeCompare(a.name.toUpperCase());
+        }
+
+        else if(sort === "byAttack"){
+            return parseInt(a.attack) - parseInt(b.attack);
+        }
+        
+        return 0;
+    });
+
+    return pokemons;
+}
+
 const filterLocals = async (filters:IFilters, localResponse:[]) => {
     let localFilteredPokemons:any = [];
-    let filteredByTypes;
 
     if(filters.types.length === 0){
         localFilteredPokemons = localResponse;
@@ -27,9 +50,9 @@ const filterLocals = async (filters:IFilters, localResponse:[]) => {
             }
         ));
 
-        filteredByTypes = localFilteredPokemons.flat();
+        localFilteredPokemons = localFilteredPokemons.flat();
 
-        const deleteLocalDuplicated = filteredByTypes.reduce((total:IPokemon[], pokemon:IPokemon) => {
+        const deleteLocalDuplicated = localFilteredPokemons.reduce((total:IPokemon[], pokemon:IPokemon) => {
             if(!total.some((p) => p.id === pokemon.id)){
                 total.push(pokemon);
             }
@@ -39,32 +62,40 @@ const filterLocals = async (filters:IFilters, localResponse:[]) => {
         localFilteredPokemons = deleteLocalDuplicated;
     }
 
+    await sortPokemons(localFilteredPokemons, filters.sort);
     return localFilteredPokemons;
 }
 
 const filterAPI = async (filters:IFilters, APIResponse:IPokemon[], pageNumber:number, APILimit:number) => {
     let APIFilteredPokemons;
-    let filteredByTypes;
+    let APIPokemonsSlice;
 
     if(filters.types.length === 0){
         APIFilteredPokemons = APIResponse;
     }
     else{
         const responses = await Promise.all(filters.types.map(async type => APIService.getPokemonsByTypes("type/" + type)));
-        filteredByTypes = responses.flat();
+        APIFilteredPokemons = responses.flat();
 
-        const deleteAPIDuplicated = filteredByTypes.reduce((total, pokemon) => {
+        const deleteAPIDuplicated = APIFilteredPokemons.reduce((total, pokemon) => {
             if(!total.some((p:IPokemon) => p.id === pokemon.id)){
                 total.push(pokemon);
             }
             return total;
         }, []);
         
-        const APIPokemonsSlice = deleteAPIDuplicated.slice(0, APILimit);
+        if(filters.sort === "byID"){
+            const sortedPokemons = await sortPokemons(deleteAPIDuplicated, filters.sort);
+            APIPokemonsSlice = sortedPokemons.slice(0, APILimit);
+        }
+        else{
+            APIPokemonsSlice = deleteAPIDuplicated.slice(0, APILimit);
+        }
         const APIPokemonsPages = Math.ceil(deleteAPIDuplicated.length/APILimit) * pageNumber;
         APIFilteredPokemons = pageNumber < APIPokemonsPages ? APIPokemonsSlice : deleteAPIDuplicated;
     }
 
+    filters.sort !== "byID" && await sortPokemons(APIFilteredPokemons, filters.sort);
     return APIFilteredPokemons;
 }
 
@@ -74,15 +105,15 @@ const getAll = async (pageNumber:number, limit:number, filters:IFilters) => {
     try{
         let filteredPokemons;
 
-        const localResponse = await JSONAPIService.getLocalPokemons()
+        const localResponse = await JSONAPIService.getLocalPokemons();
 
-        const deleteLocalDuplicated = await filterLocals(filters, localResponse)
+        const localFilter = await filterLocals(filters, localResponse);
 
-        const localPokemonsSlice = deleteLocalDuplicated.slice(0, limit);
-        const localPokemonsPages = Math.ceil(deleteLocalDuplicated.length/limit) * pageNumber;
-        const localFilteredPokemons = pageNumber < localPokemonsPages ? localPokemonsSlice : deleteLocalDuplicated;
+        const localPokemonsSlice = localFilter.slice(0, limit);
+        const localPokemonsPages = Math.ceil(localFilter.length/limit) * pageNumber;
+        const localFilteredPokemons = pageNumber < localPokemonsPages ? localPokemonsSlice : localFilter;
         
-        const APIOffset = localPokemonsPages > pageNumber ? -1 : 0
+        const APIOffset = localPokemonsPages > pageNumber ? -1 : 0;
         let APIResponse = [];
         let APILimit = 0;
         
