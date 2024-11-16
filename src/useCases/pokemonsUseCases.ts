@@ -10,17 +10,16 @@ const getTypes = async () => {
 }
 
 const filterLocals = async (filters:IFilters, localResponse:[]) => {
-    let deleteLocalDuplicated;
-    const localFilteredPokemons:any = [];
+    let localFilteredPokemons:any = [];
     let filteredByTypes;
 
     if(filters.types.length === 0){
-        deleteLocalDuplicated = localResponse;
+        localFilteredPokemons = localResponse;
     }
     else{
         await Promise.all(filters.types.map(
             async type => {
-                localResponse.map((pokemon:any) => {
+                localResponse.map((pokemon:IPokemon) => {
                     if(pokemon.types.includes(type)){
                         localFilteredPokemons.push(pokemon);
                     }
@@ -30,15 +29,17 @@ const filterLocals = async (filters:IFilters, localResponse:[]) => {
 
         filteredByTypes = localFilteredPokemons.flat();
 
-        deleteLocalDuplicated = filteredByTypes.reduce((total:any, pokemon:any) => {
-            if(!total.some((p:any) => p.id === pokemon.id)){
+        const deleteLocalDuplicated = filteredByTypes.reduce((total:IPokemon[], pokemon:IPokemon) => {
+            if(!total.some((p) => p.id === pokemon.id)){
                 total.push(pokemon);
             }
             return total;
         }, []);
+
+        localFilteredPokemons = deleteLocalDuplicated;
     }
 
-    return deleteLocalDuplicated;
+    return localFilteredPokemons;
 }
 
 const filterAPI = async (filters:IFilters, APIResponse:IPokemon[], pageNumber:number, APILimit:number) => {
@@ -53,7 +54,7 @@ const filterAPI = async (filters:IFilters, APIResponse:IPokemon[], pageNumber:nu
         filteredByTypes = responses.flat();
 
         const deleteAPIDuplicated = filteredByTypes.reduce((total, pokemon) => {
-            if(!total.some((p:any) => p.id === pokemon.id)){
+            if(!total.some((p:IPokemon) => p.id === pokemon.id)){
                 total.push(pokemon);
             }
             return total;
