@@ -83,16 +83,13 @@ const filterAPI = async (filters:IFilters, APIResponse:IPokemon[], pageNumber:nu
             }
             return total;
         }, []);
-        
-        if(filters.sort === "byID"){
-            const sortedPokemons = await sortPokemons(deleteAPIDuplicated, filters.sort);
-            APIPokemonsSlice = sortedPokemons.slice(0, APILimit);
-        }
-        else{
-            APIPokemonsSlice = deleteAPIDuplicated.slice(0, APILimit);
-        }
+
+        APIPokemonsSlice = deleteAPIDuplicated.slice(0, APILimit);
         const APIPokemonsPages = Math.ceil(deleteAPIDuplicated.length/APILimit) * pageNumber;
         APIFilteredPokemons = pageNumber < APIPokemonsPages ? APIPokemonsSlice : deleteAPIDuplicated;
+        if(filters.sort === "byID"){
+            sortPokemons(APIFilteredPokemons, filters.sort);
+        }
     }
 
     filters.sort !== "byID" && await sortPokemons(APIFilteredPokemons, filters.sort);
