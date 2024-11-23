@@ -5,13 +5,12 @@ import {
   StarFilled,
   StarOutlined,
 } from "@ant-design/icons";
-import type { GetProp, UploadFile, UploadProps } from "antd";
+import type { GetProp, SelectProps, UploadFile, UploadProps } from "antd";
 import { ConfigProvider, Flex, Form, Image, Select, Upload } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { customAnt } from "../../helpers/customAnt";
-import { typesOptions } from "../../helpers/selectOptionsTypes";
 import { IPokemon, listaPokemones } from "../../mock";
 import { DisplayStat } from "../displayStats/displayStats";
 import { TagRender } from "../tagRender/tagRender";
@@ -22,6 +21,7 @@ import { useFormik } from "formik";
 import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
 import { v4 } from "uuid";
 import * as Yup from "yup";
+import { IType } from "../../mock";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -49,12 +49,29 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [types, setTypes] = useState<SelectProps["options"]>([]);
 
   const star = favorite ? <StarFilled /> : <StarOutlined />;
 
   const handleClick = () => {
     setFavorite(!favorite);
   };
+
+  function firstLetterToUpperCase(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  useEffect(() => {
+    const getTypes = async () => {
+      const types = await PokemonUseCases.getTypes();
+      const mapedTypes = types.map((type: IType) => ({
+        value: type.name,
+        label: firstLetterToUpperCase(type.name),
+      }));
+      setTypes(mapedTypes);
+    };
+    getTypes();
+  }, []);
 
   const numericUUID = v4().replace(/\D/g, "").slice(0, 8);
 
@@ -287,7 +304,7 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                               mode="multiple"
                               tagRender={TagRender}
                               style={{ width: "100%" }}
-                              options={typesOptions}
+                              options={types}
                               placeholder="Seleccione los Tipos"
                               maxCount={2}
                               defaultValue={pokemon?.types?.map((type) => {
