@@ -69,16 +69,16 @@
     }
     
     .pokemonDetails_title{
-        width: 30%;
+        min-width: 30%;
     }
     
     .pokemonDetails_details{
         background-color: $cardColor;
-    width: 100%;
-    height: 80%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5vw;
+        width: 100%;
+        height: 80%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5vw;
 }
 
 .pokemonDetails_details_traits, .pokemonDetails_details_stats{
