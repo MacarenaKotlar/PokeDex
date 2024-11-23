@@ -6,11 +6,7 @@ import { useFilters } from "../../hooks/useFilters";
 import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
 import { useEffect, useState } from "react";
 import { TagRender } from "../tagRender/tagRender";
-
-interface IType {
-  name: string;
-  url: string;
-}
+import { IType } from "../../mock";
 
 export function SideContainer() {
   const { filters, setFilters } = useFilters();
@@ -49,7 +45,6 @@ export function SideContainer() {
         label: firstLetterToUpperCase(type.name),
       }));
       setTypes(mapedTypes);
-      console.log(mapedTypes);
     };
     getTypes();
   }, []);

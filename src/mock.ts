@@ -1,3 +1,8 @@
+export interface IType {
+  name: string;
+  url: string;
+}
+
 interface IEvolution{
   name: string;
   img: string;
