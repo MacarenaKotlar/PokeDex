@@ -1,8 +1,8 @@
 import { DetailsCard } from "../../components/details card";
-import { IPokemon, listaPokemones } from "../../mock";
+import { IPokemon } from "../../mock";
 
 const emptyPokemon: IPokemon = {
-  id: listaPokemones.length + 1,
+  id: 0,
   name: "",
   types: [],
   height: 0,
