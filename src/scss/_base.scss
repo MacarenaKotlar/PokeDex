@@ -27,8 +27,10 @@ header{
     align-items: flex-start;
 
     .homeContainer{
+        width: 80%;
+        min-height: 100vh;
         padding: 2vw;
-        @include flex(column, center);
+        @include flex(column, space-between);
     }
     
     .cardsContainer{
