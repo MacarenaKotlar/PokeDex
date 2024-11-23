@@ -169,4 +169,12 @@ const postPokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const PokemonUseCases = {getTypes, getAll, getPokemon, postPokemon}
+const editPokemon = async (pokemon:IPokemon) => {
+    try {
+        await JSONAPIService.editPokemon(pokemon)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const PokemonUseCases = {getTypes, getAll, getPokemon, postPokemon, editPokemon}

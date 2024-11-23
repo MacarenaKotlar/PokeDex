@@ -62,24 +62,42 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
     types: Yup.array().min(1, "Debe seleccionar al menos un tipo"),
   });
 
+  const initialPokemonValues = location.pathname.includes("creation")
+    ? {
+        id: parseInt(numericUUID),
+        name: "",
+        types: [],
+        height: 1,
+        weight: 1,
+        experience: 1,
+        health: 1,
+        attack: 1,
+        defense: 1,
+        speed: 1,
+        img: "/public/images/AlternativeImage.png",
+        source: "local",
+        evolutions: [],
+      }
+    : {
+        id: pokemon?.id ?? 0,
+        name: pokemon?.name ?? "",
+        types: pokemon?.types ?? [],
+        height: pokemon?.height ?? 1,
+        weight: pokemon?.weight ?? 1,
+        experience: pokemon?.experience ?? 1,
+        health: pokemon?.health ?? 1,
+        attack: pokemon?.attack ?? 1,
+        defense: pokemon?.defense ?? 1,
+        speed: pokemon?.speed ?? 1,
+        img: pokemon?.img ?? "/public/images/AlternativeImage.png",
+        source: pokemon?.source ?? "local",
+        evolutions: pokemon?.evolutions ?? [],
+      };
+
   const formik = useFormik({
-    initialValues: {
-      id: parseInt(numericUUID),
-      name: "",
-      types: [],
-      height: 1,
-      weight: 1,
-      experience: 1,
-      health: 1,
-      attack: 1,
-      defense: 1,
-      speed: 1,
-      img: "/public/images/AlternativeImage.png",
-      source: "local",
-      evolutions: [],
-    },
+    initialValues: initialPokemonValues,
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: () => {
       editBtnsClick({
         titleText: location.pathname.includes("edit")
           ? "¿Desea guardar los cambios?"
@@ -89,7 +107,6 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
           ? "Cambios guardados"
           : "Se creó el Pokémon",
       });
-      console.log(values);
     },
   });
 
@@ -109,8 +126,9 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(formik.values);
-        PokemonUseCases.postPokemon(formik.values);
+        location.pathname.includes("creation")
+          ? PokemonUseCases.postPokemon(formik.values)
+          : PokemonUseCases.editPokemon(formik.values);
         Swal.fire({
           title: successText,
           icon: "success",

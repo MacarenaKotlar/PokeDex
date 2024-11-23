@@ -32,4 +32,12 @@ const postPokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const JSONAPIService = {getLocalPokemons, getLocalPokemonDetails, postPokemon}
+const editPokemon = async (pokemon:IPokemon) => {
+    try {
+        await JSONAxiosInstance.put('/pokemons/' + pokemon.id, pokemon)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const JSONAPIService = {getLocalPokemons, getLocalPokemonDetails, postPokemon, editPokemon}
