@@ -12,7 +12,7 @@ import { FiltersProvider } from "./context/filters";
 function App() {
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar />
       <Routes>
         <Route
           path="/"
