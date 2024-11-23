@@ -1,23 +1,6 @@
 {
   "pokemons": [
     {
-      "id": "66029034",
-      "name": "dfdsgsd",
-      "types": [
-        "water"
-      ],
-      "height": 1,
-      "weight": 1,
-      "experience": 1,
-      "health": 1,
-      "attack": 3,
-      "defense": 1,
-      "speed": 1,
-      "img": "/public/images/AlternativeImage.png",
-      "source": "local",
-      "evolutions": []
-    },
-    {
       "id": "34047347",
       "name": "Pokémon Local",
       "types": [
@@ -29,23 +12,6 @@
       "experience": 1,
       "health": 3,
       "attack": 5,
-      "defense": 1,
-      "speed": 1,
-      "img": "/public/images/AlternativeImage.png",
-      "source": "local",
-      "evolutions": []
-    },
-    {
-      "id": "60209047",
-      "name": "bsauhdbusad",
-      "types": [
-        "electric"
-      ],
-      "height": 2,
-      "weight": 1,
-      "experience": 1,
-      "health": 1,
-      "attack": 1,
       "defense": 1,
       "speed": 1,
       "img": "/public/images/AlternativeImage.png",

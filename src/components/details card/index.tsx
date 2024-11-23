@@ -128,7 +128,9 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
       if (result.isConfirmed) {
         location.pathname.includes("creation")
           ? PokemonUseCases.postPokemon(formik.values)
-          : PokemonUseCases.editPokemon(formik.values);
+          : buttonText === "Guardar"
+          ? PokemonUseCases.editPokemon(formik.values)
+          : PokemonUseCases.deletePokemon(formik.values);
         Swal.fire({
           title: successText,
           icon: "success",
