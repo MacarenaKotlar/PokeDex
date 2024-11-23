@@ -74,7 +74,7 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
       attack: 1,
       defense: 1,
       speed: 1,
-      img: "",
+      img: "/public/images/AlternativeImage.png",
       source: "local",
       evolutions: [],
     },

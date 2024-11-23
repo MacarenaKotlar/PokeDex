@@ -33,7 +33,7 @@ const getPokemonDetails = async (url: string): Promise<IPokemon> => {
         attack: data.stats.find((s: any) => s.stat.name === 'attack')?.base_stat || 0,
         defense: data.stats.find((s: any) => s.stat.name === 'defense')?.base_stat || 0,
         speed: data.stats.find((s: any) => s.stat.name === 'speed')?.base_stat || 0,
-        img: data.sprites.other['home'].front_default,
+        img: data.sprites.other.home.front_default || "/public/images/AlternativeImage.png",
         source: 'api',
         evolutions: []
     }
