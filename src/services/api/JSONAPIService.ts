@@ -34,7 +34,7 @@ const postPokemon = async (pokemon:IPokemon) => {
 
 const editPokemon = async (pokemon:IPokemon) => {
     try {
-        await JSONAxiosInstance.put('/pokemons/' + pokemon.id, pokemon)
+        await JSONAxiosInstance.put(`/pokemons/${pokemon.id}`, pokemon);
     } catch (error) {
         console.log(error);
     }
