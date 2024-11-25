@@ -7,6 +7,7 @@ import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
 import { useEffect, useState } from "react";
 import { TagRender } from "../tagRender/tagRender";
 import { IPokemon, IType } from "../../mock";
+import { useLocation } from "react-router-dom";
 
 interface ISideContainer {
   page: number;
@@ -19,6 +20,7 @@ export function SideContainer({ page, limit }: ISideContainer) {
   const [pokemonOptions, setPokemonOptions] = useState<SelectProps["options"]>(
     []
   );
+  const location = useLocation();
 
   const handleSearch = (value: string) => {
     if (value) {
@@ -61,11 +63,10 @@ export function SideContainer({ page, limit }: ISideContainer) {
 
   useEffect(() => {
     const getPokemons = async () => {
-      const pokemons = await PokemonUseCases.filterPokemons(
-        page,
-        limit,
-        filters
-      );
+      const pokemons =
+        location.pathname === "/"
+          ? await PokemonUseCases.filterPokemons(page, limit, filters)
+          : await PokemonUseCases.filterFavorites(page, limit, filters);
       const mapedPokemons = pokemons.map((pokemon: IPokemon) => ({
         value: pokemon.name,
         label: firstLetterToUpperCase(pokemon.name),

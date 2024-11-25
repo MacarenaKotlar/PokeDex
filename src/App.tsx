@@ -25,7 +25,14 @@ function App() {
         <Route path="/detail/:source/:id" element={<Details />} />
         <Route path="/edit/:source/:id" element={<Edit />} />
         <Route path="/creation" element={<Creation />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route
+          path="/favorites"
+          element={
+            <FiltersProvider>
+              <Favorites />
+            </FiltersProvider>
+          }
+        />
       </Routes>
       <footer>Desarrollado por Macarena Kotlar</footer>
     </>

@@ -48,4 +48,31 @@ const deletePokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const JSONAPIService = {getLocalPokemons, getLocalPokemonDetails, postPokemon, editPokemon, deletePokemon}
+const getFavorites = async () => {
+    try{
+        const {data} = await JSONAxiosInstance.get('/favorites');
+        return data;
+    }
+
+    catch(e:any){
+        throw new Error(e.message);
+    }
+}
+
+const postFavorite = async (pokemon:IPokemon) => {
+    try {
+        await JSONAxiosInstance.post('/favorites', pokemon);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const deleteFavorite = async (pokemon:IPokemon) => {
+    try {
+        await JSONAxiosInstance.delete(`/favorites/${pokemon.id}`);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const JSONAPIService = {getLocalPokemons, getLocalPokemonDetails, postPokemon, editPokemon, deletePokemon, getFavorites, postFavorite, deleteFavorite}

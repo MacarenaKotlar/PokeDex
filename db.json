@@ -19,7 +19,7 @@
       "evolutions": []
     },
     {
-      "id": 63727445,
+      "id": "63727445",
       "name": "gsgedgdg",
       "types": [
         "ground",
@@ -34,6 +34,513 @@
       "speed": 1,
       "img": "/public/images/AlternativeImage.png",
       "source": "local",
+      "evolutions": []
+    }
+  ],
+  "favorites": [
+    {
+      "id": "34047347",
+      "name": "Pokémon Local",
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 3,
+      "attack": 5,
+      "defense": 1,
+      "speed": 1,
+      "img": "/public/images/AlternativeImage.png",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "63727445",
+      "name": "gsgedgdg",
+      "types": [
+        "ground",
+        "dragon"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "/public/images/AlternativeImage.png",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "4",
+      "name": "Charmander",
+      "types": [
+        "fire"
+      ],
+      "height": 6,
+      "weight": 85,
+      "experience": 62,
+      "health": 39,
+      "attack": 52,
+      "defense": 43,
+      "speed": 65,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/4.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "8",
+      "name": "Wartortle",
+      "types": [
+        "water"
+      ],
+      "height": 10,
+      "weight": 225,
+      "experience": 142,
+      "health": 59,
+      "attack": 63,
+      "defense": 80,
+      "speed": 58,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/8.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "9",
+      "name": "Blastoise",
+      "types": [
+        "water"
+      ],
+      "height": 16,
+      "weight": 855,
+      "experience": 265,
+      "health": 79,
+      "attack": 83,
+      "defense": 100,
+      "speed": 78,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/9.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "5",
+      "name": "Charmeleon",
+      "types": [
+        "fire"
+      ],
+      "height": 11,
+      "weight": 190,
+      "experience": 142,
+      "health": 58,
+      "attack": 64,
+      "defense": 58,
+      "speed": 80,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/5.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "1",
+      "name": "Bulbasaur",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "height": 7,
+      "weight": 69,
+      "experience": 64,
+      "health": 45,
+      "attack": 49,
+      "defense": 49,
+      "speed": 45,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "12",
+      "name": "Butterfree",
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "height": 11,
+      "weight": 320,
+      "experience": 198,
+      "health": 60,
+      "attack": 45,
+      "defense": 50,
+      "speed": 70,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/12.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "11",
+      "name": "Metapod",
+      "types": [
+        "bug"
+      ],
+      "height": 7,
+      "weight": 99,
+      "experience": 72,
+      "health": 50,
+      "attack": 20,
+      "defense": 55,
+      "speed": 30,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/11.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "16",
+      "name": "Pidgey",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "height": 3,
+      "weight": 18,
+      "experience": 50,
+      "health": 40,
+      "attack": 45,
+      "defense": 40,
+      "speed": 56,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/16.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "17",
+      "name": "Pidgeotto",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "height": 11,
+      "weight": 300,
+      "experience": 122,
+      "health": 63,
+      "attack": 60,
+      "defense": 55,
+      "speed": 71,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/17.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "18",
+      "name": "Pidgeot",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "height": 15,
+      "weight": 395,
+      "experience": 216,
+      "health": 83,
+      "attack": 80,
+      "defense": 75,
+      "speed": 101,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/18.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "24",
+      "name": "Arbok",
+      "types": [
+        "poison"
+      ],
+      "height": 35,
+      "weight": 650,
+      "experience": 157,
+      "health": 60,
+      "attack": 95,
+      "defense": 69,
+      "speed": 80,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/24.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "25",
+      "name": "Pikachu",
+      "types": [
+        "electric"
+      ],
+      "height": 4,
+      "weight": 60,
+      "experience": 112,
+      "health": 35,
+      "attack": 55,
+      "defense": 40,
+      "speed": 90,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "28",
+      "name": "Sandslash",
+      "types": [
+        "ground"
+      ],
+      "height": 10,
+      "weight": 295,
+      "experience": 158,
+      "health": 75,
+      "attack": 100,
+      "defense": 110,
+      "speed": 65,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/28.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "32",
+      "name": "Nidoran-m",
+      "types": [
+        "poison"
+      ],
+      "height": 5,
+      "weight": 90,
+      "experience": 55,
+      "health": 46,
+      "attack": 57,
+      "defense": 40,
+      "speed": 50,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/32.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "31",
+      "name": "Nidoqueen",
+      "types": [
+        "poison",
+        "ground"
+      ],
+      "height": 13,
+      "weight": 600,
+      "experience": 253,
+      "health": 90,
+      "attack": 92,
+      "defense": 87,
+      "speed": 76,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/31.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "36",
+      "name": "Clefable",
+      "types": [
+        "fairy"
+      ],
+      "height": 13,
+      "weight": 400,
+      "experience": 242,
+      "health": 95,
+      "attack": 70,
+      "defense": 73,
+      "speed": 60,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/36.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "37",
+      "name": "Vulpix",
+      "types": [
+        "fire"
+      ],
+      "height": 6,
+      "weight": 99,
+      "experience": 60,
+      "health": 38,
+      "attack": 41,
+      "defense": 40,
+      "speed": 65,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/37.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "38",
+      "name": "Ninetales",
+      "types": [
+        "fire"
+      ],
+      "height": 11,
+      "weight": 199,
+      "experience": 177,
+      "health": 73,
+      "attack": 76,
+      "defense": 75,
+      "speed": 100,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/38.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "35",
+      "name": "Clefairy",
+      "types": [
+        "fairy"
+      ],
+      "height": 6,
+      "weight": 75,
+      "experience": 113,
+      "health": 70,
+      "attack": 45,
+      "defense": 48,
+      "speed": 35,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/35.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "40",
+      "name": "Wigglytuff",
+      "types": [
+        "normal",
+        "fairy"
+      ],
+      "height": 10,
+      "weight": 120,
+      "experience": 218,
+      "health": 140,
+      "attack": 70,
+      "defense": 45,
+      "speed": 45,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/40.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "44",
+      "name": "Gloom",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "height": 8,
+      "weight": 86,
+      "experience": 138,
+      "health": 60,
+      "attack": 65,
+      "defense": 70,
+      "speed": 40,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/44.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "43",
+      "name": "Oddish",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "height": 5,
+      "weight": 54,
+      "experience": 64,
+      "health": 45,
+      "attack": 50,
+      "defense": 55,
+      "speed": 30,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/43.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "48",
+      "name": "Venonat",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "height": 10,
+      "weight": 300,
+      "experience": 61,
+      "health": 60,
+      "attack": 55,
+      "defense": 50,
+      "speed": 45,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/48.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "52",
+      "name": "Meowth",
+      "types": [
+        "normal"
+      ],
+      "height": 4,
+      "weight": 42,
+      "experience": 58,
+      "health": 40,
+      "attack": 45,
+      "defense": 35,
+      "speed": 90,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/52.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "56",
+      "name": "Mankey",
+      "types": [
+        "fighting"
+      ],
+      "height": 5,
+      "weight": 280,
+      "experience": 61,
+      "health": 40,
+      "attack": 80,
+      "defense": 35,
+      "speed": 70,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/56.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "53",
+      "name": "Persian",
+      "types": [
+        "normal"
+      ],
+      "height": 10,
+      "weight": 320,
+      "experience": 154,
+      "health": 65,
+      "attack": 70,
+      "defense": 60,
+      "speed": 115,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/53.png",
+      "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "57",
+      "name": "Primeape",
+      "types": [
+        "fighting"
+      ],
+      "height": 10,
+      "weight": 320,
+      "experience": 159,
+      "health": 65,
+      "attack": 105,
+      "defense": 60,
+      "speed": 95,
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/57.png",
+      "source": "api",
       "evolutions": []
     }
   ]

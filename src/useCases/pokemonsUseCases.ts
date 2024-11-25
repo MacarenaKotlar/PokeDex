@@ -96,7 +96,7 @@ const filterAPI = async (filters:IFilters, APIResponse:IPokemon[], pageNumber:nu
     return APIFilteredPokemons;
 }
 
-const filterPokemons = async (pageNumber: number, limit: number, filters: IFilters) => {
+const filterPokemons = async (pageNumber: number, limit: number, filters: IFilters) => {    
         try{
             let filteredPokemons;
     
@@ -209,4 +209,83 @@ const deletePokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const PokemonUseCases = {getTypes, filterPokemons, getAll, getPokemon, postPokemon, editPokemon, deletePokemon}
+const filterFavorites = async (pageNumber:number, limit:number, filters:IFilters) => {
+    try {
+        const response = await JSONAPIService.getFavorites();
+        const filteredResponse = await filterLocals(filters, response);
+        let favorites = [];
+        
+        if(filters.existence === "all"){
+            favorites = filteredResponse;
+        }
+        else if(filters.existence === "local"){
+            filteredResponse.map((pokemon:IPokemon) => {
+                if(pokemon.source === "local"){
+                    favorites.push(pokemon);
+                }
+            })
+        }
+        else if(filters.existence === "api"){
+            filteredResponse.map((pokemon:IPokemon) => {
+                if(pokemon.source === "api"){
+                    favorites.push(pokemon);
+                }
+            })
+        }
+        
+        const favoritesSlice = favorites.slice(0, limit);
+        const favoritesPages = Math.ceil(favorites.length/limit) * pageNumber;
+        const favoritesResponse = pageNumber < favoritesPages ? favoritesSlice : favorites;
+
+        return favoritesResponse;
+    }
+    catch (e:any) {
+        console.log(e);
+    }
+}
+
+const getFavorites = async (pageNumber:number, limit:number, filters:IFilters) => {
+    if(pageNumber === 1 || limit === 20) GlobalStateService.setPokemons([]);
+
+    try{
+        const favoritesResponse = await filterFavorites(pageNumber, limit, filters);
+        if(filters.search === ""){
+            GlobalStateService.setPokemons(favoritesResponse);
+        }
+        else{
+            const searchedPokemons:IPokemon[] = [];
+    
+            favoritesResponse.map((pokemon:IPokemon) => {
+                if(pokemon.name.toLowerCase().includes(filters.search.toLowerCase())){
+                    searchedPokemons.push(pokemon);
+                }
+                console.log(pokemon.name.toLowerCase().includes(filters.search.toLowerCase()));
+            });
+    
+            GlobalStateService.setPokemons(searchedPokemons);
+        }
+
+    }
+    
+    catch (e:any) {
+        console.log(e);
+    }
+}
+
+const postFavorite = async (pokemon:IPokemon) => {
+    try {
+        await JSONAPIService.postFavorite(pokemon)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const deleteFavorite = async (pokemon:IPokemon) => {
+    try {
+        await JSONAPIService.deleteFavorite(pokemon)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const PokemonUseCases = {getTypes, filterPokemons, getAll, getPokemon, postPokemon, editPokemon, deletePokemon, filterFavorites, getFavorites, postFavorite, deleteFavorite}

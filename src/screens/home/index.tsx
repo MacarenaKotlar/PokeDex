@@ -86,6 +86,7 @@ function Home() {
                 image={pokemon.img}
                 name={pokemon.name}
                 source={pokemon.source}
+                pokemon={pokemon}
               ></Card>
             ))}
           </div>

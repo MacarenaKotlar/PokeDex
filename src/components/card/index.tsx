@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { StarOutlined, StarFilled } from "@ant-design/icons";
 import { EditOutlined } from "@ant-design/icons";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { JSONAPIService } from "../../services/api/JSONAPIService";
+import { IPokemon } from "../../mock";
+import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
 
 interface ICard {
   id: number | string;
@@ -10,13 +13,30 @@ interface ICard {
   image: string;
   attackPoints: number;
   source: string;
+  pokemon: IPokemon;
+  onFavoritesChange?: () => void;
 }
 
-export function Card({ id, name, image, attackPoints, source }: ICard) {
-  const location = useLocation();
-  const [favorite, setFavorite] = useState(
-    location.pathname.includes("favorites") ? true : false
-  );
+export function Card({
+  id,
+  name,
+  image,
+  attackPoints,
+  source,
+  pokemon,
+  onFavoritesChange,
+}: ICard) {
+  const [favorite, setFavorite] = useState(false);
+
+  const pokemonInFavorites = async (pokemon: IPokemon) => {
+    const pokemons: IPokemon[] = await JSONAPIService.getFavorites();
+    const isPokemonInFavorites = pokemons.some((p) => p.id === pokemon.id);
+    setFavorite(isPokemonInFavorites);
+  };
+
+  useEffect(() => {
+    if (pokemon) pokemonInFavorites(pokemon);
+  }, [pokemon]);
 
   const star = favorite ? <StarFilled /> : <StarOutlined />;
 
@@ -25,7 +45,11 @@ export function Card({ id, name, image, attackPoints, source }: ICard) {
   ) => {
     event.preventDefault();
     event.stopPropagation();
+    favorite
+      ? PokemonUseCases.deleteFavorite(pokemon)
+      : PokemonUseCases.postFavorite(pokemon);
     setFavorite(!favorite);
+    if (onFavoritesChange) onFavoritesChange();
   };
 
   return (
