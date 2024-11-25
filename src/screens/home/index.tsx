@@ -40,11 +40,11 @@ function Home() {
     setLimit(pageSizeLimitInitialValue);
     setPage(pageInitialValue);
     getPokemons(pageInitialValue, pageSizeLimitInitialValue, filters);
-  }, [filters]);
+  }, [filters.sort, filters.types, filters.existence]);
 
   useEffect(() => {
     getPokemons(page, limit, filters);
-  }, [page]);
+  }, [page, filters.search]);
 
   const customPagination = {
     components: {
@@ -75,7 +75,7 @@ function Home() {
   return (
     <>
       <main className="mainSpaceBetween">
-        <SideContainer />
+        <SideContainer page={page} limit={limit} />
         <div className="homeContainer">
           <div className="cardsContainer">
             {pokemons.map((pokemon) => (

@@ -6,11 +6,33 @@ import { useFilters } from "../../hooks/useFilters";
 import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
 import { useEffect, useState } from "react";
 import { TagRender } from "../tagRender/tagRender";
-import { IType } from "../../mock";
+import { IPokemon, IType } from "../../mock";
 
-export function SideContainer() {
+interface ISideContainer {
+  page: number;
+  limit: number;
+}
+
+export function SideContainer({ page, limit }: ISideContainer) {
   const { filters, setFilters } = useFilters();
   const [types, setTypes] = useState<SelectProps["options"]>([]);
+  const [pokemonOptions, setPokemonOptions] = useState<SelectProps["options"]>(
+    []
+  );
+
+  const handleSearch = (value: string) => {
+    if (value) {
+      setFilters((prevstate: any) => ({
+        ...prevstate,
+        search: value,
+      }));
+    } else {
+      setFilters((prevstate: any) => ({
+        ...prevstate,
+        search: "",
+      }));
+    }
+  };
 
   const hanldeSortChange = (value: string) => {
     setFilters((prevstate: any) => ({
@@ -36,6 +58,22 @@ export function SideContainer() {
   function firstLetterToUpperCase(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  useEffect(() => {
+    const getPokemons = async () => {
+      const pokemons = await PokemonUseCases.filterPokemons(
+        page,
+        limit,
+        filters
+      );
+      const mapedPokemons = pokemons.map((pokemon: IPokemon) => ({
+        value: pokemon.name,
+        label: firstLetterToUpperCase(pokemon.name),
+      }));
+      setPokemonOptions(mapedPokemons);
+    };
+    getPokemons();
+  }, [page, filters]);
 
   useEffect(() => {
     const getTypes = async () => {
@@ -84,6 +122,19 @@ export function SideContainer() {
     <ConfigProvider theme={customSelect}>
       <div className={styles.sideContainer}>
         <ul>
+          <li>
+            <span>Buscar</span>
+            <Select
+              style={{ width: "100%" }}
+              showSearch
+              placeholder="Seleccione un Pokémon"
+              options={pokemonOptions}
+              onSearch={handleSearch}
+              onChange={handleSearch}
+              allowClear
+            />
+          </li>
+
           <li>
             <span>Ordenar</span>
             <Select

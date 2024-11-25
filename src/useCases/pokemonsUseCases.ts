@@ -96,46 +96,70 @@ const filterAPI = async (filters:IFilters, APIResponse:IPokemon[], pageNumber:nu
     return APIFilteredPokemons;
 }
 
-const getAll = async (pageNumber:number, limit:number, filters:IFilters) => {
+const filterPokemons = async (pageNumber: number, limit: number, filters: IFilters) => {
     if(pageNumber === 1 || limit === 20) GlobalStateService.setPokemons([])
     
-    try{
-        let filteredPokemons;
-
-        const localResponse = await JSONAPIService.getLocalPokemons();
-
-        const localFilter = await filterLocals(filters, localResponse);
-
-        const localPokemonsSlice = localFilter.slice(0, limit);
-        const localPokemonsPages = Math.ceil(localFilter.length/limit) * pageNumber;
-        const localFilteredPokemons = pageNumber < localPokemonsPages ? localPokemonsSlice : localFilter;
-        
-        const APIOffset = localPokemonsPages > pageNumber ? -1 : 0;
-        let APIResponse = [];
-        let APILimit = 0;
-        
-        if(filters.existence === "all"){
-            APILimit = APIOffset >= 0 ? limit - localFilteredPokemons.length : 0
-            APIResponse = await APIService.getPokemons({offset: APIOffset}, {limit: APILimit})
-
-            const APIFilteredPokemons = await filterAPI(filters, APIResponse, pageNumber, APILimit);
-            filteredPokemons = [...localFilteredPokemons, ...APIFilteredPokemons];
+        try{
+            let filteredPokemons;
+    
+            const localResponse = await JSONAPIService.getLocalPokemons();
+    
+            const localFilter = await filterLocals(filters, localResponse);
+    
+            const localPokemonsSlice = localFilter.slice(0, limit);
+            const localPokemonsPages = Math.ceil(localFilter.length/limit) * pageNumber;
+            const localFilteredPokemons = pageNumber < localPokemonsPages ? localPokemonsSlice : localFilter;
+            
+            const APIOffset = localPokemonsPages > pageNumber ? -1 : 0;
+            let APIResponse = [];
+            let APILimit = 0;
+            
+            if(filters.existence === "all"){
+                APILimit = APIOffset >= 0 ? limit - localFilteredPokemons.length : 0
+                APIResponse = await APIService.getPokemons({offset: APIOffset}, {limit: APILimit})
+    
+                const APIFilteredPokemons = await filterAPI(filters, APIResponse, pageNumber, APILimit);
+                filteredPokemons = [...localFilteredPokemons, ...APIFilteredPokemons];
+            }
+            else if(filters.existence === "local"){
+                filteredPokemons = localFilteredPokemons;
+            }
+            else if(filters.existence === "api"){
+                APILimit = limit;
+                APIResponse = await APIService.getPokemons({offset: 0}, {limit: APILimit});
+    
+                const APIFilteredPokemons = await filterAPI(filters, APIResponse, pageNumber, APILimit);
+                filteredPokemons = APIFilteredPokemons;
+            }
+            
+            return filteredPokemons;
         }
-        else if(filters.existence === "local"){
-            filteredPokemons = localFilteredPokemons;
+        catch(e:any){
+            console.log(e)
         }
-        else if(filters.existence === "api"){
-            APILimit = limit;
-            APIResponse = await APIService.getPokemons({offset: 0}, {limit: APILimit});
+}
 
-            const APIFilteredPokemons = await filterAPI(filters, APIResponse, pageNumber, APILimit);
-            filteredPokemons = APIFilteredPokemons;
+const getAll = async (pageNumber:number, limit:number, filters:IFilters) => {
+    try {
+        const pokemons = await filterPokemons(pageNumber, limit, filters);
+        if(filters.search === ""){
+            GlobalStateService.setPokemons(pokemons);
+        }
+        else{
+            const searchedPokemons:IPokemon[] = [];
+
+            pokemons.map((pokemon:IPokemon) => {
+                if(pokemon.name.toLowerCase().includes(filters.search.toLowerCase())){
+                    searchedPokemons.push(pokemon);
+                }
+                console.log(pokemon.name.toLowerCase().includes(filters.search.toLowerCase()));
+            });
+
+            GlobalStateService.setPokemons(searchedPokemons);
         }
 
-        GlobalStateService.setPokemons(filteredPokemons)
-    }
-    catch(e:any){
-        console.log(e)
+    } catch (e:any) {
+        console.log(e);
     }
 }
 
@@ -185,4 +209,4 @@ const deletePokemon = async (pokemon:IPokemon) => {
     }
 }
 
-export const PokemonUseCases = {getTypes, getAll, getPokemon, postPokemon, editPokemon, deletePokemon}
+export const PokemonUseCases = {getTypes, filterPokemons, getAll, getPokemon, postPokemon, editPokemon, deletePokemon}
