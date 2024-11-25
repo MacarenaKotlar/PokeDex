@@ -1,37 +1,35 @@
 import { useEffect, useState } from "react";
-import { IPokemon, listaPokemones } from "../../mock";
+import { IPokemon } from "../../mock";
 import { useLocation } from "react-router-dom";
-import { ConfigProvider, Select } from "antd";
+import { ConfigProvider, Select, SelectProps } from "antd";
 import { customAnt } from "../../helpers/customAnt";
-
-interface IPokemonOption {
-  value?: number;
-  label?: string;
-}
+import { JSONAPIService } from "../../services/api/JSONAPIService";
 
 export function SelectEvolutions(defaultEvolution: string) {
-  const [pokemonOptions, setPokemonOptions] = useState<IPokemonOption[]>([]);
-  const [pokemon, setPokemon] = useState<IPokemon[]>([]);
+  const [pokemonOptions, setPokemonOptions] = useState<SelectProps["options"]>(
+    []
+  );
+  const [pokemons, setPokemons] = useState<IPokemon[]>([]);
   const location = useLocation();
 
   useEffect(() => {
     getPokemon();
   }, []);
 
-  const getPokemon = () => {
-    const fetch = [...listaPokemones];
-    setPokemon(fetch);
+  const getPokemon = async () => {
+    const fetch = await JSONAPIService.getLocalPokemons();
+    setPokemons(fetch);
   };
 
   useEffect(() => {
-    pokemon.length > 0 &&
-      setPokemonOptions(
-        pokemon.map((p) => ({
-          value: p.id,
-          label: p.name,
-        }))
-      );
-  }, [pokemon]);
+    if (pokemons.length > 0) {
+      const mapedPokemons = pokemons.map((pokemon) => ({
+        value: pokemon.id,
+        label: pokemon.name,
+      }));
+      setPokemonOptions(mapedPokemons);
+    }
+  }, []);
 
   const DisplaySelect = () => {
     return (

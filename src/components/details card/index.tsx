@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { customAnt } from "../../helpers/customAnt";
-import { IPokemon, listaPokemones } from "../../mock";
+import { IPokemon } from "../../mock";
 import { DisplayStat } from "../displayStats/displayStats";
 import { TagRender } from "../tagRender/tagRender";
 import ColorTags from "../type tags/tags";
