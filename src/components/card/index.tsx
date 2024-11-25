@@ -5,7 +5,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
 
 interface ICard {
-  id: number;
+  id: number | string;
   name: string;
   image: string;
   attackPoints: number;
