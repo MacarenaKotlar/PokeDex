@@ -114,6 +114,7 @@ export function SideContainer({ page, limit }: ISideContainer) {
         colorPrimaryHover: "rgb(248,217,107)",
         colorPrimary: "rgb(255,219,90)",
         colorTextQuaternary: "rgba(255,255,255,0.4)",
+        colorBgBase: "rgb(140,140,140)",
       },
     },
   };
