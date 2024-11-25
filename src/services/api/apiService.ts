@@ -23,7 +23,7 @@ const getPokemonDetails = async (url: string): Promise<IPokemon> => {
     const { data } = await axiosInstance.get(url);
 
     return {
-        id: data.id,
+        id: String(data.id),
         name: firstLetterToUpperCase(data.name),
         types: data.types.map((t: any) => t.type.name),
         height: data.height,
