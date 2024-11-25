@@ -34,21 +34,21 @@ export function SideContainer({ page, limit }: ISideContainer) {
     }
   };
 
-  const hanldeSortChange = (value: string) => {
+  const handleSortChange = (value: string) => {
     setFilters((prevstate: any) => ({
       ...prevstate,
       sort: value,
     }));
   };
 
-  const hanldeExistenceFilterChange = (value: string) => {
+  const handleExistenceFilterChange = (value: string) => {
     setFilters((prevstate: any) => ({
       ...prevstate,
       existence: value,
     }));
   };
 
-  const hanldeTypesFilterChange = (value: string[]) => {
+  const handleTypesFilterChange = (value: string[]) => {
     setFilters((prevstate: any) => ({
       ...prevstate,
       types: value,
@@ -140,9 +140,9 @@ export function SideContainer({ page, limit }: ISideContainer) {
             <Select
               style={{ width: "100%" }}
               options={orderBySelectOptions}
-              onChange={hanldeSortChange}
+              onChange={handleSortChange}
               value={filters.sort}
-            ></Select>
+            />
           </li>
 
           <li>
@@ -153,7 +153,7 @@ export function SideContainer({ page, limit }: ISideContainer) {
               style={{ width: "100%" }}
               options={types}
               placeholder="Seleccione los Tipos"
-              onChange={hanldeTypesFilterChange}
+              onChange={handleTypesFilterChange}
               value={filters.types}
             />
           </li>
@@ -163,9 +163,9 @@ export function SideContainer({ page, limit }: ISideContainer) {
             <Select
               style={{ width: "100%" }}
               options={filterSelectOptions}
-              onChange={hanldeExistenceFilterChange}
+              onChange={handleExistenceFilterChange}
               value={filters.existence}
-            ></Select>
+            />
           </li>
         </ul>
       </div>
