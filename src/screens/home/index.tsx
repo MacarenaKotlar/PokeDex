@@ -52,7 +52,7 @@ function Home() {
         colorBorder: "rgba(255,217,0,0.5)",
         selectorBg: "rgba(60,60,60)",
         fontSize: 16,
-        controlHeight: 45,
+        controlHeight: 40,
         colorText: "rgb(255,255,255)",
         colorBgElevated: "rgb(65,65,65)",
         optionActiveBg: "rgba(255,255,255,0.1)",

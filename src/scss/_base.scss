@@ -59,7 +59,6 @@ header{
         }
 
         div{
-            width: 20%;
             @include flex(row, center);
             gap: 1vw;
         }
