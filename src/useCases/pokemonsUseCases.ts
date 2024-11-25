@@ -97,8 +97,6 @@ const filterAPI = async (filters:IFilters, APIResponse:IPokemon[], pageNumber:nu
 }
 
 const filterPokemons = async (pageNumber: number, limit: number, filters: IFilters) => {
-    if(pageNumber === 1 || limit === 20) GlobalStateService.setPokemons([])
-    
         try{
             let filteredPokemons;
     
@@ -140,6 +138,8 @@ const filterPokemons = async (pageNumber: number, limit: number, filters: IFilte
 }
 
 const getAll = async (pageNumber:number, limit:number, filters:IFilters) => {
+    if(pageNumber === 1 || limit === 20) GlobalStateService.setPokemons([]);
+    
     try {
         const pokemons = await filterPokemons(pageNumber, limit, filters);
         if(filters.search === ""){
