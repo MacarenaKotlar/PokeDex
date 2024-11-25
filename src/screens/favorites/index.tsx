@@ -48,7 +48,6 @@ function Favorites() {
   }, [filters.sort, filters.types, filters.existence]);
 
   useEffect(() => {
-    console.log(favoritesUpdated);
     getPokemons(page, limit, filters);
   }, [page, filters.search, favoritesUpdated]);
 
