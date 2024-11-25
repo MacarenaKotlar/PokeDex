@@ -22,6 +22,7 @@ import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
 import { v4 } from "uuid";
 import * as Yup from "yup";
 import { IType } from "../../mock";
+import { JSONAPIService } from "../../services/api/JSONAPIService";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -40,7 +41,7 @@ interface IAlertTexts {
 }
 
 interface IDetailsCard {
-  pokemon?: IPokemon;
+  pokemon: IPokemon;
 }
 
 export function DetailsCard({ pokemon }: IDetailsCard) {
@@ -51,9 +52,26 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [types, setTypes] = useState<SelectProps["options"]>([]);
 
+  const pokemonInFavorites = async (pokemon: IPokemon) => {
+    const pokemons: IPokemon[] = await JSONAPIService.getFavorites();
+    const isPokemonInFavorites = pokemons.some((p) => p.id === pokemon.id);
+    setFavorite(isPokemonInFavorites);
+  };
+
+  useEffect(() => {
+    if (pokemon) pokemonInFavorites(pokemon);
+  }, [pokemon]);
+
   const star = favorite ? <StarFilled /> : <StarOutlined />;
 
-  const handleClick = () => {
+  const handleFavoritesClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    event.stopPropagation();
+    favorite
+      ? PokemonUseCases.deleteFavorite(pokemon)
+      : PokemonUseCases.postFavorite(pokemon);
     setFavorite(!favorite);
   };
 
@@ -247,7 +265,7 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
                         ? `${styles.pokemonDetails_buttons_favoriteBtn} ${styles.favorite}`
                         : styles.pokemonDetails_buttons_favoriteBtn
                     }
-                    onClick={handleClick}
+                    onClick={handleFavoritesClick}
                   >
                     {star}
                   </a>

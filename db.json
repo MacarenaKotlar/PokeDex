@@ -161,24 +161,6 @@
       "evolutions": []
     },
     {
-      "id": "12",
-      "name": "Butterfree",
-      "types": [
-        "bug",
-        "flying"
-      ],
-      "height": 11,
-      "weight": 320,
-      "experience": 198,
-      "health": 60,
-      "attack": 45,
-      "defense": 50,
-      "speed": 70,
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/12.png",
-      "source": "api",
-      "evolutions": []
-    },
-    {
       "id": "11",
       "name": "Metapod",
       "types": [
