@@ -1,12 +1,11 @@
 import {
   ArrowRightOutlined,
   EditOutlined,
-  PlusOutlined,
   StarFilled,
   StarOutlined,
 } from "@ant-design/icons";
-import type { GetProp, SelectProps, UploadFile, UploadProps } from "antd";
-import { ConfigProvider, Flex, Form, Image, Select, Upload } from "antd";
+import type { SelectProps } from "antd";
+import { ConfigProvider, Form, Select } from "antd";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -23,16 +22,8 @@ import { v4 } from "uuid";
 import * as Yup from "yup";
 import { IType } from "../../mock";
 import { JSONAPIService } from "../../services/api/JSONAPIService";
-
-type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
-
-const getBase64 = (file: FileType): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
+import UploadImage from "../uploadImage/uploadImage";
+import inputImage from "../imageInput/imageInput";
 
 interface IAlertTexts {
   titleText: string;
@@ -47,10 +38,8 @@ interface IDetailsCard {
 export function DetailsCard({ pokemon }: IDetailsCard) {
   const [favorite, setFavorite] = useState(false);
   const location = useLocation();
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [types, setTypes] = useState<SelectProps["options"]>([]);
+  const [image, setImage] = useState<File>();
 
   const pokemonInFavorites = async (pokemon: IPokemon) => {
     const pokemons: IPokemon[] = await JSONAPIService.getFavorites();
@@ -159,13 +148,18 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
       confirmButtonText: buttonText,
       cancelButtonText: "Cancelar",
       allowOutsideClick: false,
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
+        let pokemonToPost = { ...formik.values };
+        if (image) {
+          const img = await UploadImage(image);
+          pokemonToPost = { ...formik.values, img };
+        }
         location.pathname.includes("creation")
-          ? PokemonUseCases.postPokemon(formik.values)
+          ? PokemonUseCases.postPokemon(pokemonToPost)
           : buttonText === "Guardar"
-          ? PokemonUseCases.editPokemon(formik.values)
-          : PokemonUseCases.deletePokemon(formik.values);
+          ? PokemonUseCases.editPokemon(pokemonToPost)
+          : PokemonUseCases.deletePokemon(pokemonToPost);
         Swal.fire({
           title: successText,
           icon: "success",
@@ -176,65 +170,27 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
     });
   };
 
-  const handlePreview = async (file: UploadFile) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj as FileType);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files[0]) {
+      setImage(files[0]);
     }
-
-    setPreviewImage(file.url || (file.preview as string));
-    setPreviewOpen(true);
   };
-
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
 
   return (
     <Form className={styles.container} onFinish={formik.handleSubmit}>
       <div className={styles.detailsContainer}>
         <div
           className={styles.pokemonImage}
-          style={{ backgroundImage: `url(${pokemon?.img})` }}
+          style={
+            location.pathname.includes("detail")
+              ? { backgroundImage: `url(${pokemon?.img})` }
+              : { backgroundImage: "" }
+          }
         >
           {(location.pathname.includes("edit") ||
-            location.pathname.includes("creation")) && (
-            <Flex
-              flex={1}
-              style={{ width: "100%", height: "100%" }}
-              justify="center"
-              align="center"
-            >
-              <Upload
-                style={{ width: "100%", height: "100%" }}
-                action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={handlePreview}
-                onChange={handleChange}
-              >
-                {fileList.length >= 1 ? null : (
-                  <button
-                    style={{ border: 0, background: "none" }}
-                    type="button"
-                  >
-                    <PlusOutlined />
-                    <div style={{ marginTop: 8 }}>Upload</div>
-                  </button>
-                )}
-              </Upload>
-              {previewImage && (
-                <Image
-                  wrapperStyle={{ display: "none" }}
-                  preview={{
-                    visible: previewOpen,
-                    onVisibleChange: (visible) => setPreviewOpen(visible),
-                    afterOpenChange: (visible) =>
-                      !visible && setPreviewImage(""),
-                  }}
-                  src={previewImage}
-                />
-              )}
-            </Flex>
-          )}
+            location.pathname.includes("creation")) &&
+            inputImage(handleFileChange, pokemon, location)}
         </div>
         <div className={styles.pokemonDetails}>
           <div className={styles.pokemonDetails_header}>

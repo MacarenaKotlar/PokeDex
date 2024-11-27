@@ -1,24 +1,6 @@
 {
   "pokemons": [
     {
-      "id": "34047347",
-      "name": "Pokémon Local",
-      "types": [
-        "fire",
-        "flying"
-      ],
-      "height": 1,
-      "weight": 1,
-      "experience": 1,
-      "health": 3,
-      "attack": 5,
-      "defense": 1,
-      "speed": 1,
-      "img": "/public/images/AlternativeImage.png",
-      "source": "local",
-      "evolutions": []
-    },
-    {
       "id": "63727445",
       "name": "gsgedgdg",
       "types": [
@@ -33,47 +15,65 @@
       "defense": 1,
       "speed": 1,
       "img": "/public/images/AlternativeImage.png",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "70039716",
+      "name": "Tigre",
+      "types": [
+        "fire",
+        "grass"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "https://res.cloudinary.com/dmiqarwcb/image/upload/v1732643001/dgb6uikout7xqeu2abzz.jpg",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "31139649",
+      "name": "Oso Podcast",
+      "types": [
+        "ground",
+        "dark"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "https://res.cloudinary.com/dmiqarwcb/image/upload/v1732693752/a73sphb8deb51xmcov95.jpg",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "85094891",
+      "name": "Gato Pintura",
+      "types": [
+        "fairy",
+        "psychic"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "https://res.cloudinary.com/dmiqarwcb/image/upload/v1732649506/rnnahcmbcv1iq3glj7c4.jpg",
       "source": "local",
       "evolutions": []
     }
   ],
   "favorites": [
-    {
-      "id": "34047347",
-      "name": "Pokémon Local",
-      "types": [
-        "fire",
-        "flying"
-      ],
-      "height": 1,
-      "weight": 1,
-      "experience": 1,
-      "health": 3,
-      "attack": 5,
-      "defense": 1,
-      "speed": 1,
-      "img": "/public/images/AlternativeImage.png",
-      "source": "local",
-      "evolutions": []
-    },
-    {
-      "id": "63727445",
-      "name": "gsgedgdg",
-      "types": [
-        "ground",
-        "dragon"
-      ],
-      "height": 1,
-      "weight": 1,
-      "experience": 1,
-      "health": 1,
-      "attack": 1,
-      "defense": 1,
-      "speed": 1,
-      "img": "/public/images/AlternativeImage.png",
-      "source": "local",
-      "evolutions": []
-    },
     {
       "id": "4",
       "name": "Charmander",
@@ -228,40 +228,6 @@
       "defense": 75,
       "speed": 101,
       "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/18.png",
-      "source": "api",
-      "evolutions": []
-    },
-    {
-      "id": "24",
-      "name": "Arbok",
-      "types": [
-        "poison"
-      ],
-      "height": 35,
-      "weight": 650,
-      "experience": 157,
-      "health": 60,
-      "attack": 95,
-      "defense": 69,
-      "speed": 80,
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/24.png",
-      "source": "api",
-      "evolutions": []
-    },
-    {
-      "id": "25",
-      "name": "Pikachu",
-      "types": [
-        "electric"
-      ],
-      "height": 4,
-      "weight": 60,
-      "experience": 112,
-      "health": 35,
-      "attack": 55,
-      "defense": 40,
-      "speed": 90,
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png",
       "source": "api",
       "evolutions": []
     },
@@ -523,6 +489,78 @@
       "speed": 95,
       "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/57.png",
       "source": "api",
+      "evolutions": []
+    },
+    {
+      "id": "63727445",
+      "name": "gsgedgdg",
+      "types": [
+        "ground",
+        "dragon"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "/public/images/AlternativeImage.png",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "85094891",
+      "name": "Gato Pintura",
+      "types": [
+        "fairy",
+        "psychic"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "https://res.cloudinary.com/dmiqarwcb/image/upload/v1732649506/rnnahcmbcv1iq3glj7c4.jpg",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "70039716",
+      "name": "Tigre",
+      "types": [
+        "fire",
+        "grass"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "https://res.cloudinary.com/dmiqarwcb/image/upload/v1732643001/dgb6uikout7xqeu2abzz.jpg",
+      "source": "local",
+      "evolutions": []
+    },
+    {
+      "id": "31139649",
+      "name": "Oso Podcast",
+      "types": [
+        "ground",
+        "dark"
+      ],
+      "height": 1,
+      "weight": 1,
+      "experience": 1,
+      "health": 1,
+      "attack": 1,
+      "defense": 1,
+      "speed": 1,
+      "img": "https://res.cloudinary.com/dmiqarwcb/image/upload/v1732647287/hnszjgjvcip5dccaaab3.jpg",
+      "source": "local",
       "evolutions": []
     }
   ]
