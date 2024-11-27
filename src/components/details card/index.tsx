@@ -99,7 +99,7 @@ export function DetailsCard({ pokemon }: IDetailsCard) {
 
   const initialPokemonValues = location.pathname.includes("creation")
     ? {
-        id: parseInt(numericUUID),
+        id: String(numericUUID),
         name: "",
         types: [],
         height: 1,
