@@ -7,6 +7,7 @@ import { ConfigProvider, Select } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useFilters } from "../../hooks/useFilters";
 import { IFilters } from "../../context/filters";
+import { HomeLoader } from "../../components/loader";
 
 function Favorites() {
   const pageInitialValue = 1;
@@ -15,6 +16,7 @@ function Favorites() {
   const [pageSize, setPageSize] = useState(pageSizeLimitInitialValue);
   const [limit, setLimit] = useState(pageSizeLimitInitialValue);
   const [favoritesUpdated, setFavoritesUpdated] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { filters } = useFilters();
 
   const handlePageChange = () => {
@@ -41,14 +43,22 @@ function Favorites() {
   };
 
   useEffect(() => {
+    setLoading(true);
     setPageSize(pageSizeLimitInitialValue);
     setLimit(pageSizeLimitInitialValue);
     setPage(pageInitialValue);
-    getPokemons(pageInitialValue, pageSizeLimitInitialValue, filters);
+    getPokemons(pageInitialValue, pageSizeLimitInitialValue, filters).then(
+      () => {
+        setTimeout(() => setLoading(false), 500);
+      }
+    );
   }, [filters.sort, filters.types, filters.existence]);
 
   useEffect(() => {
-    getPokemons(page, limit, filters);
+    setLoading(true);
+    getPokemons(page, limit, filters).then(() => {
+      setTimeout(() => setLoading(false), 500);
+    });
   }, [page, filters.search, favoritesUpdated]);
 
   const customPagination = {
@@ -83,18 +93,22 @@ function Favorites() {
         <SideContainer page={page} limit={limit} />
         <div className="homeContainer">
           <div className="cardsContainer">
-            {pokemons.map((pokemon) => (
-              <Card
-                key={pokemon.id}
-                id={pokemon.id}
-                attackPoints={pokemon.attack}
-                image={pokemon.img}
-                name={pokemon.name}
-                source={pokemon.source}
-                pokemon={pokemon}
-                onFavoritesChange={handleFavoritesChange}
-              ></Card>
-            ))}
+            {loading ? (
+              <HomeLoader cards={limit} />
+            ) : (
+              pokemons.map((pokemon) => (
+                <Card
+                  key={pokemon.id}
+                  id={pokemon.id}
+                  attackPoints={pokemon.attack}
+                  image={pokemon.img}
+                  name={pokemon.name}
+                  source={pokemon.source}
+                  pokemon={pokemon}
+                  onFavoritesChange={handleFavoritesChange}
+                />
+              ))
+            )}
           </div>
           <div className="paginationContainer">
             <button onClick={handlePageChange}>
