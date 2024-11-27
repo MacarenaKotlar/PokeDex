@@ -187,7 +187,8 @@ const getPokemon = async (source?:string, id?:string,) => {
 
 const postPokemon = async (pokemon:IPokemon) => {
     try {
-        await JSONAPIService.postPokemon(pokemon)
+        await JSONAPIService.postPokemon(pokemon);
+        console.log("pokemon: ", pokemon);
     } catch (error) {
         console.log(error)
     }
