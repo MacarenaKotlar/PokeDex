@@ -9,7 +9,7 @@ interface IEvolution{
 }
 
 export interface IPokemon{
-    id: number | string;
+    id: string;
     name: string;
     types: string[];
     height: number;

@@ -8,7 +8,7 @@ import { IPokemon } from "../../mock";
 import { PokemonUseCases } from "../../useCases/pokemonsUseCases";
 
 interface ICard {
-  id: number | string;
+  id: string;
   name: string;
   image: string;
   attackPoints: number;
